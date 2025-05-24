@@ -25,7 +25,7 @@ public class Drink implements Sellable {
 
     @Override
     public double calculateUnitPrice() {
-        HashMap<String, Double> priceMap = fileUtils.readPriceWithHeader(priceChart);
+        HashMap<String, Double> priceMap = fileUtils.parse2Values(priceChart);
         return priceMap.get(this.size);
     }
 

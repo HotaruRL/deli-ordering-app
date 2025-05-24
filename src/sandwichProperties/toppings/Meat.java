@@ -1,6 +1,6 @@
 package sandwichProperties.toppings;
 
-import sandwichProperties.SandwichOfSize;
+import sandwichProperties.SizeSpecificPriceInfo;
 import sandwichProperties.Topping;
 
 public class Meat extends Topping {
@@ -14,7 +14,8 @@ public class Meat extends Topping {
     public void setMeatName(String meatName) {this.meatName = meatName;}
 
     @Override
-    protected double getToppingPrice(SandwichOfSize sandwichOfSize, boolean isExtra) {
+    protected double getToppingPrice(SizeSpecificPriceInfo sizeSpecificPriceInfo, boolean isExtra) {
+
         return 0;
     }
 }

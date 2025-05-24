@@ -1,38 +1,38 @@
 package merch;
 
-import sandwichProperties.BreadType;
-import sandwichProperties.SandwichOfSize;
+import sandwichProperties.*;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Sandwich implements Sellable {
-    private SandwichOfSize sandwichOfSize;
+    private Enum<SandwichSize> sandwichSize;
     private BreadType breadType;
-    private List<SelectedTopping> selectedToppings;
+    private ArrayList<SelectedTopping> selectedToppings;
     private boolean isToasted;
 
-    public Sandwich(SandwichOfSize sandwichOfSize, BreadType breadType, List<SelectedTopping> selectedToppings, boolean isToasted){
-        this.sandwichOfSize = sandwichOfSize;
+    public Sandwich(Enum<SandwichSize> sandwichSize, BreadType breadType, ArrayList<SelectedTopping> selectedToppings, boolean isToasted){
+        this.sandwichSize = sandwichSize;
         this.breadType = breadType;
         this.selectedToppings = selectedToppings;
         this.isToasted = isToasted;
     }
 
     // getters
-    public SandwichOfSize getSandwichOfSize() {return sandwichOfSize;}
+    public Enum<SandwichSize> getSandwichOfSize() {return sandwichSize;}
     public BreadType getBreadType() {return breadType;}
-    public List<SelectedTopping> getSelectedToppings() {return selectedToppings;}
+    public ArrayList<SelectedTopping> getSelectedToppings() {return selectedToppings;}
     public boolean isToasted() {return isToasted;}
     // setters
-    public void setSandwichOfSize(SandwichOfSize sandwichOfSize) {this.sandwichOfSize = sandwichOfSize;}
+    public void setSandwichOfSize(Enum<SandwichSize> sizeSpecificPriceInfo) {this.sandwichSize = sizeSpecificPriceInfo;}
     public void setBreadType(BreadType breadType) {this.breadType = breadType;}
-    public void setSelectedToppings(List<SelectedTopping> selectedToppings) {this.selectedToppings = selectedToppings;}
+    public void setSelectedToppings(ArrayList<SelectedTopping> selectedToppings) {this.selectedToppings = selectedToppings;}
     public void setToasted(boolean toasted) {isToasted = toasted;}
 
     @Override
     public double calculateUnitPrice() {
-
-        return 0;
+        double subTotal = 0;
+        return subTotal;
     }
 
     @Override

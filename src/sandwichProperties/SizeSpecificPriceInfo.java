@@ -1,22 +1,22 @@
 package sandwichProperties;
 
-public class SandwichOfSize {
-    private String size;
+public class SizeSpecificPriceInfo {
+    private Enum<SandwichSize> sandwichSize;
     private double breadPrice;
     private double meatPrice;
     private double extraMeatPrice;
     private double cheesePrice;
     private double extraCheesePrice;
 
-    SandwichOfSize(
-            String size,
+    SizeSpecificPriceInfo(
+            Enum<SandwichSize> sandwichSize,
             double breadPrice,
             double meatPrice,
             double extraMeatPrice,
             double cheesePrice,
             double extraCheesePrice
             ){
-        this.size = size;
+        this.sandwichSize = sandwichSize;
         this.breadPrice = breadPrice;
         this.meatPrice = meatPrice;
         this.extraMeatPrice = extraMeatPrice;
@@ -25,14 +25,14 @@ public class SandwichOfSize {
     }
 
     // getters
-    public String getSize() {return size;}
+    public Enum<SandwichSize> getSandwichSize() {return sandwichSize;}
     public double getBreadPrice() {return breadPrice;}
     public double getMeatPrice() {return meatPrice;}
     public double getExtraMeatPrice() {return extraMeatPrice;}
     public double getCheesePrice() {return cheesePrice;}
     public double getExtraCheesePrice() {return extraCheesePrice;}
     // setters
-    public void setSize(String size) {this.size = size;}
+    public void setSandwichSize(Enum<SandwichSize> sandwichSize) {this.sandwichSize = sandwichSize;}
     public void setBreadPrice(double breadPrice) {this.breadPrice = breadPrice;}
     public void setMeatPrice(double meatPrice) {this.meatPrice = meatPrice;}
     public void setExtraMeatPrice(double extraMeatPrice) {this.extraMeatPrice = extraMeatPrice;}
