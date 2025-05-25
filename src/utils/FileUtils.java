@@ -30,12 +30,12 @@ public class FileUtils {
 
     // parse csv file with lines of multiple values each e.g. size|basePrice|meat|extraMeat|cheese|extraCheese
     public HashMap<String, HashMap<String, Double>> parseMultipleValues(String filePath) {
-        HashMap<String, Double> componentChart = new HashMap<>();
+        HashMap<String, String> headerField = new HashMap<>();
+        HashMap<Integer, HashMap<String, Double>> priceChartMap = new HashMap<>();
         HashMap<String, HashMap<String, Double>> output = new HashMap<>();
         try {
             bufferedReader = new BufferedReader(new FileReader(filePath));
             //parse header line
-            HashMap<String, String> headerField = new HashMap<>();
             int currentHeaderPart = 0;
             String partName;
             String partContent = "";
@@ -44,13 +44,23 @@ public class FileUtils {
                 partName = "part" + currentHeaderPart;
                 partContent = s;
                 headerField.put(partName, partContent);
+                currentHeaderPart++;
             }
             // parse pricing lines
-            int partNumber = 0;
+
+            int priceChartID = 0;
             String input;
             while ((input = bufferedReader.readLine()) != null) {
-                String[] parts = input.trim().split("\\|");
-                output.put(parts[0], componentChart.put(headerParts[partNumber],(parts[partNumber++])));
+                String[] valueParts = input.trim().split("\\|");
+                HashMap<String, Double> currentPriceChart = new HashMap<>();
+                int partNumber = 0;
+                for (String s : valueParts) {
+                    currentPriceChart.put(headerField.get("part" + partNumber), Double.parseDouble(valueParts[partNumber]));
+                    partNumber++;
+                }
+                priceChartMap.put(priceChartID, currentPriceChart);
+                output.put(valueParts[0], priceChartMap.get(priceChartID));
+                priceChartID++;
             }
         } catch (Exception e) {
             System.out.println("File cannot be read. Please double check FilePath!\nError: " + e.toString());

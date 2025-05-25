@@ -1,11 +1,22 @@
+import java.util.HashMap;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
 //        //test readPriceWithHeader
 //        utils.FileUtils fileUtils = new utils.FileUtils();
-//        HashMap<String, Double> list = fileUtils.readPriceWithHeader("drinkPrice.csv");
+//        HashMap<String, Double> list = fileUtils.parse2Values("drinkPrice.csv");
 //        System.out.println(list.get("small"));
 
-
+//        //test parseMultipleValues
+//        utils.FileUtils fileUtils = new utils.FileUtils();
+//        HashMap<String, HashMap<String, Double>> list = fileUtils.parseMultipleValues("sandwichPrice.csv");
+//        HashMap<String, Double> priceChart = list.get("4");
+//        for (HashMap.Entry<String, Double> entry : priceChart.entrySet()) {
+//            String key = entry.getKey();
+//            Double value = entry.getValue();
+//            System.out.println("Key: " + key + ", Value: " + value);
+//        }
     }
 }
