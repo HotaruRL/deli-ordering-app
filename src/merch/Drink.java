@@ -1,13 +1,12 @@
 package merch;
 
-import utils.FileUtils;
-import java.util.HashMap;
+import utils.PricingService;
 
-public class Drink implements Sellable {
+public class Drink implements LineItem {
     private String priceChart = "drinkPrice.csv";
     private String drinkName;
     private String size;
-    private final FileUtils fileUtils = new FileUtils();
+    private PricingService pricingService;
 
     public Drink(String drinkName, String size) {
         this.drinkName = drinkName;
@@ -25,8 +24,8 @@ public class Drink implements Sellable {
 
     @Override
     public double calculateUnitPrice() {
-        HashMap<String, Double> priceMap = fileUtils.parse2Values(priceChart);
-        return priceMap.get(this.size);
+        pricingService = new PricingService();
+        return pricingService.getDrinkPrice(this.size);
     }
 
     @Override

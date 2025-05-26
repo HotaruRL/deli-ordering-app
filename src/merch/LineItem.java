@@ -1,6 +1,6 @@
 package merch;
 
-public interface Sellable {
+public interface LineItem {
     double calculateUnitPrice();
     void getReceiptDetails();
 }

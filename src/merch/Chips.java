@@ -1,8 +1,10 @@
 package merch;
 
-public class Chips implements Sellable{
+import utils.PricingService;
+
+public class Chips implements LineItem {
     private String chipName;
-    private final double chipPrice = 1.5;
+    private PricingService pricingService;
 
     public Chips(String chipName){
         this.chipName = chipName;
@@ -10,13 +12,13 @@ public class Chips implements Sellable{
 
     // getters
     public String getChipName() {return chipName;}
-    public double getChipPrice() {return chipPrice;}
     // setters
     public void setChipName(String chipName) {this.chipName = chipName;}
 
     @Override
     public double calculateUnitPrice() {
-        return this.chipPrice;
+        pricingService = new PricingService();
+        return pricingService.getChipsPrice();
     }
 
     @Override

@@ -14,4 +14,12 @@ public class SelectedTopping {
     // setters
     public void setTopping(Topping topping) {this.topping = topping;}
     public void setExtra(boolean extra) {isExtra = extra;}
+
+    public String getDisplayName(){
+        String name = topping.getToppingName();
+        if (isExtra){
+            return name + " (Extra)";
+        }
+        return name;
+    }
 }
