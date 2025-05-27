@@ -29,7 +29,7 @@ public class Drink implements LineItem {
     }
 
     @Override
-    public void getReceiptDetails() {
-
+    public String getReceiptDetails() {
+        return String.format("%s (%s)", this.drinkName, this.size);
     }
 }

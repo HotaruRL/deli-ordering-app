@@ -1,7 +1,6 @@
 package utils;
 
 import merch.LineItem;
-import merch.Sandwich;
 import sandwichProperties.Topping;
 import sandwichProperties.toppings.Cheese;
 import sandwichProperties.toppings.Meat;
@@ -13,7 +12,7 @@ public class PricingService {
     private static final String SANDWICH_PRICES_FILE_PATH = "sandwichPrice.csv";
     private static final String DRINK_PRICES_FILE_PATH = "drinkPrice.csv";
     private HashMap<String, HashMap<String, Double>> sandwichPriceChart;
-    private HashMap<String, Double> drinkPriceChart;
+    private HashMap<String, String> drinkPriceChart;
     private final double CHIPS_PRICE = 1.5;
     private FileUtils fileUtils;
 
@@ -24,12 +23,12 @@ public class PricingService {
 
     public void loadPrices(){
         fileUtils = new FileUtils();
-        this.sandwichPriceChart = fileUtils.parseMultipleValues(SANDWICH_PRICES_FILE_PATH);
-        this.drinkPriceChart = fileUtils.parse2Values(DRINK_PRICES_FILE_PATH);
+        this.sandwichPriceChart = fileUtils.parseMultipleColumns(SANDWICH_PRICES_FILE_PATH);
+        this.drinkPriceChart = fileUtils.parse2Columns(DRINK_PRICES_FILE_PATH);
     }
 
     public double getDrinkPrice(String size){
-        return drinkPriceChart.get(size);
+        return Double.parseDouble(drinkPriceChart.get(size));
     }
 
     public double getChipsPrice() {
@@ -68,6 +67,7 @@ public class PricingService {
         }
         return subTotal;
     }
+
     public double getTotal(double subTotal, double sale_taxes){
         return subTotal * (1 + sale_taxes);
     }
