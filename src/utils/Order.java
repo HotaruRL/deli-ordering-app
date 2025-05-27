@@ -29,4 +29,6 @@ public class Order {
     public void addItem(LineItem item){
         this.lineItems.add(item);
     }
+
+    public LocalDateTime getOrderDateTime() {return orderDateTime;}
 }
