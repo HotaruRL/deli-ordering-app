@@ -22,7 +22,7 @@ public class Chips implements LineItem {
     }
 
     @Override
-    public void getReceiptDetails() {
-
+    public String getReceiptDetails() {
+        return this.chipName;
     }
 }

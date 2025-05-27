@@ -46,7 +46,19 @@ public class Sandwich implements LineItem {
     }
 
     @Override
-    public void getReceiptDetails() {
+    public String getReceiptDetails() {
+        return String.format("Custom Sandwich (%s)", this.sandwichSize);
+    }
 
+    public ArrayList<String> getAdditionDetails(){
+        ArrayList<String> details = new ArrayList<>();
+        String indent = "   ";
+        details.add(String.format(indent + "Bread: %s", this.breadType.getDisplayName()));
+        details.add(String.format(indent + "Toasted: %s", this.isToasted ? "Yes" : "No"));
+        details.add(indent + "Toppings:");
+        for (SelectedTopping topping : this.selectedToppings){
+            details.add(String.format(indent + "- %s", topping.getDisplayName()));
+        }
+        return details;
     }
 }
