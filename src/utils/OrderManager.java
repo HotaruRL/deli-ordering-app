@@ -99,7 +99,7 @@ public class OrderManager {
         return receipt.toString();
     }
 
-    public void saveOrder(Order order){
+    public void saveReceipt(Order order){
         fileUtils.createFile(order.getOrderDateTime());
         fileUtils.writeToFile(order.getOrderDateTime(),createReceipt(order));
     }

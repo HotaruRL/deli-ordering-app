@@ -67,6 +67,7 @@ public class PricingService {
         }
         return subTotal;
     }
+
     public double getTotal(double subTotal, double sale_taxes){
         return subTotal * (1 + sale_taxes);
     }
