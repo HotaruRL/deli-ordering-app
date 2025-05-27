@@ -1,11 +1,12 @@
 package utils;
 
+import merch.LineItem;
 import merch.Sandwich;
-import sandwichProperties.SandwichSize;
 import sandwichProperties.Topping;
 import sandwichProperties.toppings.Cheese;
 import sandwichProperties.toppings.Meat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PricingService {
@@ -58,5 +59,16 @@ public class PricingService {
         }else {
             return 0;
         }
+    }
+
+    public double getSubTotal(ArrayList<LineItem> lineItems){
+        double subTotal = 0;
+        for (LineItem item : lineItems){
+            subTotal += item.calculateUnitPrice();
+        }
+        return subTotal;
+    }
+    public double getTotal(double subTotal, double sale_taxes){
+        return subTotal * (1 + sale_taxes);
     }
 }
