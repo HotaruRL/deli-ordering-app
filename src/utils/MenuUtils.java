@@ -15,14 +15,15 @@ public class MenuUtils {
         this.scanner = new Scanner(System.in);
     }
 
-    public void setMenu(ArrayList<String> options){
+    public void setMenu(String menuName, ArrayList<String> options){
         int optionNumber = 1;
         StringBuilder output = new StringBuilder();
-        String header = textUtils.headerWithPadding("Home Screen","*","-",3);
+        String header = textUtils.headerWithPadding(menuName,"*","-",3);
         output.append(header).append("\n");
         for (String s : options){
             if (!s.equals(options.getLast())){
                 output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "",optionNumber, s)).append("\n");
+                optionNumber++;
             }else {
                 output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", 0, s)).append("\n");
             }
