@@ -1,7 +1,7 @@
 package utils;
 
 import merch.LineItem;
-import sandwichProperties.Topping;
+import sandwichProperties.toppings.Topping;
 import sandwichProperties.toppings.Cheese;
 import sandwichProperties.toppings.Meat;
 

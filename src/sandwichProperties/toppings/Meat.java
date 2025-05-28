@@ -1,7 +1,5 @@
 package sandwichProperties.toppings;
 
-import sandwichProperties.Topping;
-
 public class Meat extends Topping {
     private String meatName;
 
@@ -12,7 +10,7 @@ public class Meat extends Topping {
     public void setMeatName(String meatName) {this.meatName = meatName;}
 
     @Override
-    protected String getToppingName() {
+    public String getToppingName() {
         return this.meatName;
     }
 }
