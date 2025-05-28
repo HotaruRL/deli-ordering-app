@@ -1,5 +1,7 @@
 package sandwichProperties;
 
+import sandwichProperties.toppings.Topping;
+
 public class SelectedTopping {
     private Topping topping;
     private boolean isExtra;

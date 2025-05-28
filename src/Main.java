@@ -1,3 +1,5 @@
+import screens.HomeScreen;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -26,6 +28,9 @@ public class Main {
 //        utils.FileUtils fileUtils = new utils.FileUtils();
 //        fileUtils.createFile(now);
 
-        System.out.println("---------10--------20--------30--------40--------50--------60--------70--------80");
+//        System.out.println("---------10--------20--------30--------40--------50--------60--------70--------80");
+
+        HomeScreen homeScreen = new HomeScreen();
+        homeScreen.display();
     }
 }

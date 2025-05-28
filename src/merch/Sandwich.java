@@ -1,6 +1,7 @@
 package merch;
 
 import sandwichProperties.*;
+import sandwichProperties.toppings.Topping;
 import utils.PricingService;
 
 import java.util.ArrayList;

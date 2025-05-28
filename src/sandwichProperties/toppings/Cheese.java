@@ -1,7 +1,5 @@
 package sandwichProperties.toppings;
 
-import sandwichProperties.Topping;
-
 public class Cheese extends Topping {
     private String cheeseName;
 
@@ -12,7 +10,7 @@ public class Cheese extends Topping {
     public void setCheeseName(String cheeseName) {this.cheeseName = cheeseName;}
 
     @Override
-    protected String getToppingName() {
+    public String getToppingName() {
         return this.cheeseName;
     }
 }
