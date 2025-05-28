@@ -1,7 +1,7 @@
 package utils;
 
 public class TextUtils {
-    private static final int LINE_WIDTH = 40;
+    private static final int LINE_WIDTH = 60;
     private static final String SPACE = " ";
 
     public TextUtils(){}
