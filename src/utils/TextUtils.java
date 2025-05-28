@@ -13,7 +13,6 @@ public class TextUtils {
             output.append(chars);
         }
         return output.toString();
-
     }
 
     public String centerTextWithPadding(String text, String paddingChars, int paddingLength1Side){
@@ -68,6 +67,7 @@ public class TextUtils {
         output.append(borderRow).append("\n");
         return output.toString();
     }
+
     public String header(String headerName, String bordersChars){
         StringBuilder output = new StringBuilder();
         String borderRow = createPattern(bordersChars, LINE_WIDTH);
