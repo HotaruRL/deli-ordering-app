@@ -10,7 +10,6 @@ public class HomeScreen extends Screen{
 
     public HomeScreen(OrderManager orderManager){
         super(orderManager);
-        this.orderScreen = new OrderScreen(orderManager);
     }
 
     @Override
@@ -26,6 +25,7 @@ public class HomeScreen extends Screen{
             switch (userInput) {
                 case 1 -> {
                     orderManager.createNewOrder();
+                    this.orderScreen = new OrderScreen(orderManager, orderManager.getCurrentOrder());
                     orderScreen.display();
                 }
                 case 0 -> {return;}

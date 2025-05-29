@@ -12,10 +12,13 @@ public class Sandwich implements LineItem {
     private BreadType breadType;
     private ArrayList<SelectedTopping> selectedToppings;
     private boolean isToasted;
+    private int quantity;
     private PricingService pricingService;
     private String isCustomizing;
 
-    public Sandwich(){}
+    public Sandwich(int quantity){
+        this.quantity = quantity;
+    }
     public Sandwich(String sandwichSize, BreadType breadType, ArrayList<SelectedTopping> selectedToppings, boolean isToasted){
         this.sandwichSize = sandwichSize;
         this.breadType = breadType;
@@ -28,6 +31,7 @@ public class Sandwich implements LineItem {
     public BreadType getBreadType() {return breadType;}
     public ArrayList<SelectedTopping> getSelectedToppings() {return selectedToppings;}
     public boolean isToasted() {return isToasted;}
+    public int getQuantity() {return quantity;}
     public String getIsCustomizing() {return isCustomizing;}
 
     // setters
@@ -35,13 +39,27 @@ public class Sandwich implements LineItem {
     public void setBreadType(BreadType breadType) {this.breadType = breadType;}
     public void setSelectedToppings(ArrayList<SelectedTopping> selectedToppings) {this.selectedToppings = selectedToppings;}
     public void setToasted(boolean toasted) {isToasted = toasted;}
+    public void setQuantity(int quantity) {this.quantity = quantity;}
     public void setIsCustomizing(String isCustomizing) {this.isCustomizing = isCustomizing;}
 
-    public void addTopping(SelectedTopping topping){
-        this.selectedToppings.add(topping);
-    }
     @Override
-    public double calculatePrice() {
+    public double getPrice() {
+        pricingService = new PricingService();
+        double price = 0.0;
+        // get the base price of the sandwich base on size
+        price += pricingService.getSpecificPrice(this.sandwichSize,"basePrice");
+        // add the applicable toppings' prices
+        for (SelectedTopping selectedTopping : this.selectedToppings){
+            Topping topping = selectedTopping.getTopping();
+            boolean isExtra = selectedTopping.isExtra();
+            price += pricingService.getToppingPrice(topping, this.sandwichSize, isExtra);
+        }
+        // if there's multiple exact sandwich, price * quantity
+        return price * this.quantity;
+    }
+
+    @Override
+    public double getUnitPrice(){
         pricingService = new PricingService();
         double unitPrice = 0.0;
         // get the base price of the sandwich base on size
@@ -60,19 +78,26 @@ public class Sandwich implements LineItem {
         return String.format("Custom Sandwich (%s\")", this.sandwichSize);
     }
 
-    public ArrayList<String> getAdditionDetails(){
+    public ArrayList<String> getAdditionDetails(boolean forReceipt){
         ArrayList<String> details = new ArrayList<>();
-        String indent = "   ";
-        details.add(String.format(indent + "Bread: %s", this.breadType.getDisplayName()));
-        details.add(String.format(indent + "Toasted: %s", this.isToasted ? "Yes" : "No"));
-        details.add(indent + "Toppings:");
+        if (forReceipt) {
+            details.add(String.format("Bread: %s", this.breadType.getPlainName()));
+        }else {
+            details.add(String.format("Bread: %s", this.breadType.getDisplayName()));
+        }
+        details.add(String.format("Toasted: %s", this.isToasted ? "Yes" : "No"));
+        details.add("Toppings:");
         for (SelectedTopping topping : this.selectedToppings){
             if (topping.getTopping() instanceof Cheese){
-                details.add(String.format(indent + "- cheese: %s", topping.getDisplayName()));
+                details.add(String.format("- cheese: %s", topping.getDisplayName()));
             }else {
-                details.add(String.format(indent + "- %s", topping.getDisplayName()));
+                details.add(String.format("- %s", topping.getDisplayName()));
             }
         }
         return details;
+    }
+
+    public void addTopping(SelectedTopping topping){
+        this.selectedToppings.add(topping);
     }
 }
