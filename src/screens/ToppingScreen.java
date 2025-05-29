@@ -21,29 +21,47 @@ public class ToppingScreen extends Screen {
 
     @Override
     public void display() {
+        // list of topping types as keys to get the list of options for such types + names for menu
         ArrayList<String> toppingTypeList = new ArrayList<>();
         toppingTypeList.add("Meat");
         toppingTypeList.add("Cheese");
         toppingTypeList.add("Other Toppings");
         toppingTypeList.add("Sauce");
         toppingTypeList.add("Sides");
+        // get Hashmap of topping types and their list of options
         HashMap<String, ArrayList<String>> toppingChart = menuUtils.getToppingChart();
 
+        // step number to add in front of each topping type
         int step = 3;
+
+        // go through the topping types one by one
         for (String type : toppingTypeList) {
+            // get the list of options from the current topping type
             ArrayList<String> list = toppingChart.get(type);
+            // add the option to move to the next topping type
             list.add(String.format(RED + "Done" + RESET + " with adding %s", type));
 
+            // create menu for the current topping type and a list of its options
+            // process user input
+            // only move on to the next topping type when user is done with the current type
+            // TODO: fix auto moving on to next type when choosing the option that has already had an extra added
+            // TODO: check the else and else-if at the end
             int userInput = -1;
             while (userInput != 0) {
+                //create menu
                 menuUtils.setMenu(String.format("%d. %s Options", step, type), list, " ", "-", 10);
+                // prompt to get user input
                 userInput = menuUtils.getInt("your choice");
+                // user is done with current type
                 if (userInput == 0) {
                     break;
+                // input is within range of options
                 } else if (userInput > 0 && userInput < list.size()) {
-                    String selectedToppingName = list.get(userInput - 1);
-                    Topping currentTopping = null;
-                    // convert string to Topping Object
+                    String selectedToppingName = list.get(userInput - 1); // index of selected option is less than 1 the number shown
+                    // TODO: extract method from the line below?
+                    Topping currentTopping = null; // create an empty Topping object to modify and to add later
+                    // convert empty Topping Object to the appropriate type based on the string name of current topping type in for loop
+                    // add selected topping option to its name
                     switch (type) {
                         case "Meat" -> currentTopping = new Meat(selectedToppingName);
                         case "Cheese" -> currentTopping = new Cheese(selectedToppingName);
@@ -51,9 +69,12 @@ public class ToppingScreen extends Screen {
                         case "Sauce" -> currentTopping = new Sauce(selectedToppingName);
                         case "Sides" -> currentTopping = new Sides(selectedToppingName);
                     }
+
+                    // convert current topping object into SelectedTopping object (non-extra)
                     SelectedTopping selectedTopping = new SelectedTopping(currentTopping, false);
 
-                    // check if the list doesn't exist
+                    // check if the sandwich's list of SelectedToppings has been created or not
+                    // if not create it and add the new selectedTopping above onto the list
                     if (currentSandwich.getSelectedToppings() == null) {
                         currentSandwich.setSelectedToppings(new ArrayList<>());
                         currentSandwich.addTopping(selectedTopping);

@@ -1,5 +1,6 @@
 package screens;
 
+import merch.Drink;
 import merch.Sandwich;
 import utils.OrderManager;
 
@@ -33,7 +34,12 @@ public class OrderScreen extends Screen{
                     SandwichScreen sandwichScreen = new SandwichScreen(orderManager, currentItemIndex);
                     sandwichScreen.display();
                 }
-                case 2 -> System.out.println("Drink Order Screen\n");
+                case 2 -> {
+                    orderManager.getCurrentOrder().addItem(new Drink());
+                    int currentItemIndex = menuUtils.getIndexOfLastItem(orderManager.getCurrentOrder().getLineItems());
+                    DrinkScreen drinkScreen = new DrinkScreen(orderManager, currentItemIndex);
+                    drinkScreen.display();
+                }
                 case 3 -> System.out.println("Chips Order Screen\n");
                 case 4 -> System.out.println("Checkout Screen\n");
                 case 0 -> {return;}
