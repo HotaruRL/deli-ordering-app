@@ -1,10 +1,12 @@
 package sandwichProperties;
 
+import static utils.ColorUtils.*;
+
 public enum BreadType {
-    WHITE("White Bread"),
-    WHEAT("Wheat Bread"),
-    RYE("Rye Bread"),
-    WRAP("Wrap");
+    WHITE(BRIGHT_WHITE + "White" + RESET + " Bread"),
+    WHEAT(YELLOW + "Wheat" + RESET + " Bread"),
+    RYE(MAGENTA + "Rye" + RESET + " Bread"),
+    WRAP(GREEN + "Wrap" + RESET);
 
     private final String displayName;
 

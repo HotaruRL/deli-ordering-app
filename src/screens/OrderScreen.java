@@ -1,20 +1,21 @@
 package screens;
 
-import utils.MenuUtils;
+import merch.Sandwich;
+import utils.OrderManager;
 
 import java.util.ArrayList;
-
 import static utils.ColorUtils.*;
 
 public class OrderScreen extends Screen{
-    private MenuUtils menuUtils;
 
-    public OrderScreen(){
-        this.menuUtils = new MenuUtils();
+    public OrderScreen(OrderManager orderManager){
+        super(orderManager);
+
     }
 
     @Override
     public void display() {
+
         ArrayList<String> options = new ArrayList<>();
         options.add(RED + "Add" + RESET + " Sandwich");
         options.add(RED + "Add" + RESET + " Drink");
@@ -23,10 +24,15 @@ public class OrderScreen extends Screen{
         options.add(RED + "Cancel" + RESET + " Order");
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("Order Screen", options);
-            userInput = menuUtils.parseInt(menuUtils.getValidatedInputString("appropriate number to execute the task"));
+            menuUtils.setMenu("Order Screen",options,"*","-",3);
+            userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
-                case 1 -> System.out.println("Sandwich Order Screen\n");
+                case 1 -> {
+                    orderManager.getCurrentOrder().addItem(new Sandwich());
+                    int currentItemIndex = menuUtils.getIndexOfLastItem(orderManager.getCurrentOrder().getLineItems());
+                    SandwichScreen sandwichScreen = new SandwichScreen(orderManager, currentItemIndex);
+                    sandwichScreen.display();
+                }
                 case 2 -> System.out.println("Drink Order Screen\n");
                 case 3 -> System.out.println("Chips Order Screen\n");
                 case 4 -> System.out.println("Checkout Screen\n");

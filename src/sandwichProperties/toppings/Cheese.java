@@ -1,16 +1,17 @@
 package sandwichProperties.toppings;
 
 public class Cheese extends Topping {
-    private String cheeseName;
+    private String name;
 
-    public Cheese(String cheeseName) {
-        this.cheeseName = cheeseName;
+    public Cheese(String name) {
+        super(name);
+        this.name = name;
     }
 
-    public void setCheeseName(String cheeseName) {this.cheeseName = cheeseName;}
+    public void setName(String name) {this.name = name;}
 
     @Override
     public String getToppingName() {
-        return this.cheeseName;
+        return this.name;
     }
 }

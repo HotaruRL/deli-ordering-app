@@ -9,19 +9,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PricingService {
-    private static final String SANDWICH_PRICES_FILE_PATH = "sandwichPrice.csv";
-    private static final String DRINK_PRICES_FILE_PATH = "drinkPrice.csv";
+    private static final String SANDWICH_PRICES_FILE_PATH = "internalUse\\sandwichPrice.csv";
+    private static final String DRINK_PRICES_FILE_PATH = "internalUse\\drinkPrice.csv";
     private HashMap<String, HashMap<String, Double>> sandwichPriceChart;
     private HashMap<String, String> drinkPriceChart;
     private final double CHIPS_PRICE = 1.5;
     private FileUtils fileUtils;
 
     public PricingService(){
-        this.fileUtils = new FileUtils();
-        loadPrices();
-    }
-
-    public void loadPrices(){
         fileUtils = new FileUtils();
         this.sandwichPriceChart = fileUtils.parseMultipleColumns(SANDWICH_PRICES_FILE_PATH);
         this.drinkPriceChart = fileUtils.parse2Columns(DRINK_PRICES_FILE_PATH);

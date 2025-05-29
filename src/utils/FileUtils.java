@@ -3,6 +3,8 @@ package utils;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class FileUtils {
@@ -25,6 +27,21 @@ public class FileUtils {
             System.out.println("File cannot be read. Please double check FilePath!\nError: " + e.toString());
         }
         return output;
+    }
+
+    // parse csv file with lines of only 2 columns each e.g. size|price; 1 first column is key, 2nd column is value
+    // parse 2nd column value into an arraylist to access each of them
+    public HashMap<String, ArrayList<String>> loadList(String filePath){
+        HashMap<String, String> rawToppingsChart = parse2Columns(filePath);
+        HashMap<String, ArrayList<String>> toppingChart = new HashMap<>();
+        for (HashMap.Entry<String, String> entry : rawToppingsChart.entrySet()) {
+            String type = entry.getKey();
+            String option = entry.getValue();
+            String[] eachOption = option.split(",");
+            ArrayList<String> toppingOptions = new ArrayList<>(Arrays.asList(eachOption));
+            toppingChart.put(type, toppingOptions);
+        }
+        return toppingChart;
     }
 
     // parse csv file with lines of multiple columns each e.g. size|basePrice|meat|extraMeat|cheese|extraCheese

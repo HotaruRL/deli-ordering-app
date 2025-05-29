@@ -1,24 +1,84 @@
 package utils;
 
+import merch.LineItem;
+import merch.Sandwich;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-import static utils.ColorUtils.BLUE;
-import static utils.ColorUtils.RESET;
+import static utils.ColorUtils.*;
 
 public class MenuUtils {
+    private static final String TOPPINGS_LIST_FILE_PATH = "internalUse\\toppingList.csv";
+    private FileUtils fileUtils;
     private TextUtils textUtils;
     private Scanner scanner;
 
     public MenuUtils(){
+        this.fileUtils = new FileUtils();
         this.textUtils = new TextUtils();
         this.scanner = new Scanner(System.in);
     }
 
-    public void setMenu(String menuName, ArrayList<String> options){
+    public void confirmAdd(LineItem item){
+        StringBuilder confirmation = new StringBuilder();
+        int LINE_WIDTH = 40;
+        String SPACE = " ";
+
+        String itemDescription = item.getReceiptDetails();
+        String itemPrice = String.format("$%.2f", item.calculateUnitPrice());
+
+        // to calculate the space between description and price
+        int descriptionLength = itemDescription.length();
+        int priceLength = itemPrice.length();
+        int spaceNeeded = LINE_WIDTH - (descriptionLength + priceLength);
+        // make sure to have at least 1 space between description and price
+        if (spaceNeeded < 1){
+            spaceNeeded = 1;
+        }
+
+        confirmation.append(String.format("%s%s%s\n",
+                itemDescription,
+                SPACE.repeat(spaceNeeded),
+                itemPrice));
+
+        // if item is a sandwich, add additional details
+        if (item instanceof Sandwich){
+            for (String detail : ((Sandwich) item).getAdditionDetails()){
+                if (detail == null){
+                    continue;
+                }
+                confirmation.append(detail).append("\n");
+            }
+        }
+        // add a line break after each line item
+        confirmation.append("\n");
+
+        System.out.println(String.format(GREEN+"\nThe following item has been successfully added to your order!\n"+RESET+confirmation));
+    }
+
+    public int getIndexOfLastItem(ArrayList<LineItem> list){
+        return list.size() - 1;
+    }
+
+    public HashMap<String, ArrayList<String>> getToppingChart(){
+        return fileUtils.loadList(TOPPINGS_LIST_FILE_PATH);
+    }
+
+    public ArrayList<String> getToppingTypeList(){
+        ArrayList<String> toppingTypeList = new ArrayList<>();
+        for (HashMap.Entry<String, ArrayList<String>> entry : fileUtils.loadList(TOPPINGS_LIST_FILE_PATH).entrySet()) {
+            String type = entry.getKey();
+            toppingTypeList.add(type);
+        }
+        return toppingTypeList;
+    }
+
+    public void setMenu(String menuName, ArrayList<String> options, String bordersChars, String paddingChars, int paddingLength){
         int optionNumber = 1;
         StringBuilder output = new StringBuilder();
-        String header = textUtils.headerWithPadding(menuName,"*","-",3);
+        String header = textUtils.headerWithPadding(menuName,bordersChars,paddingChars,paddingLength);
         output.append(header).append("\n");
         for (String s : options){
             if (!s.equals(options.getLast())){
@@ -31,39 +91,36 @@ public class MenuUtils {
         System.out.println(output);
     }
 
-    public String getValidatedInputString (String fieldName){
-        String userInput;
-        while (true) {
+    public String getString(String fieldName){
+        String userInput = "";
+        while (userInput.isEmpty()) {
             System.out.printf("Please enter the %s: ", fieldName);
             userInput = scanner.nextLine().trim();
-            if (!userInput.isEmpty()) {
-                break;
-            }else {
-                System.out.printf("\n%s cannot be blank. Please hit [Enter] to try again!", fieldName);
-            }
         }
         return userInput;
     }
 
-    public Integer parseInt(String input){
+    public Integer getInt(String fieldName){
         Integer userInput = null;
         while (userInput == null) {
+            String text = getString(fieldName);
             try {
-                userInput = Integer.parseInt(input);
+                userInput = Integer.parseInt(text);
             } catch (Exception e) {
-                System.out.println("The input is not a valid number! Error: " + e.toString());
+                System.out.println(RED + "Invalid Input! Please try again!" + RESET);
             }
         }
         return userInput;
     }
 
-    public Double parseDouble(String input) {
+    public Double getDouble(String fieldName) {
         Double userInput = null;
         while (userInput == null){
+            String text = getString(fieldName);
             try {
-                userInput = Double.parseDouble(input);
+                userInput = Double.parseDouble(text);
             } catch (Exception e) {
-                System.out.println("The input is not a valid number! Error: " + e.toString());
+                System.out.println(RED + "Invalid Input! Please try again!" + RESET);
             }
         }
         return userInput;
