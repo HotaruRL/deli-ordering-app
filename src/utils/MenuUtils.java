@@ -10,6 +10,7 @@ import java.util.Scanner;
 import static utils.ColorUtils.*;
 
 public class MenuUtils {
+    private static final String CHIPS_LIST_FILE_PATH = "internalUse\\chipsFlavor.csv";
     private static final String DRINKS_LIST_FILE_PATH = "internalUse\\drinkFlavor.csv";
     private static final String TOPPINGS_LIST_FILE_PATH = "internalUse\\toppingList.csv";
     private FileUtils fileUtils;
@@ -29,7 +30,7 @@ public class MenuUtils {
         String SPACE = " ";
 
         String itemDescription = item.getReceiptDetails();
-        String itemPrice = String.format("$%.2f", item.calculateUnitPrice());
+        String itemPrice = String.format("$%.2f", item.calculatePrice());
 
         // to calculate the space between description and price
         int descriptionLength = itemDescription.length();
@@ -63,6 +64,11 @@ public class MenuUtils {
     // get the index of newly added item for the purpose of getting correct item to modify
     public int getIndexOfLastItem(ArrayList<LineItem> list){
         return list.size() - 1;
+    }
+
+    // create an ArrayList of chips flavors
+    public ArrayList<String> getChipsList(){
+        return fileUtils.parse1Line(CHIPS_LIST_FILE_PATH);
     }
 
     // create an ArrayList of drink flavors

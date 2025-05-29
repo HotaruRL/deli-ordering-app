@@ -45,7 +45,7 @@ public class DrinkScreen extends Screen{
                 String selectedDrink = drinkList.get(userInput - 1);
                 // set the currentDrink object's name with the selected name
                 currentDrink.setDrinkName(selectedDrink);
-                System.out.printf(GREEN + "%s has been successfully added!\n" + RESET, currentDrink.getDrinkName());
+                System.out.printf(GREEN + "%s has been selected!\n" + RESET, currentDrink.getDrinkName());
                 chooseDrinkSize();
                 if (isGoBack){
                     continue;
@@ -91,6 +91,7 @@ public class DrinkScreen extends Screen{
                 default -> System.out.println(RED + "Invalid option. Please try again!" + RESET + "\n");
             }
         }
+        System.out.printf(GREEN + "%s has been selected!\n" + RESET, currentDrink.getSize());
     }
 
     public void chooseDrinkQuantity(){

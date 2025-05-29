@@ -1,6 +1,6 @@
 package merch;
 
 public interface LineItem {
-    double calculateUnitPrice();
+    double calculatePrice();
     String getReceiptDetails();
 }

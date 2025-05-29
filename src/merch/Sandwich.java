@@ -41,7 +41,7 @@ public class Sandwich implements LineItem {
         this.selectedToppings.add(topping);
     }
     @Override
-    public double calculateUnitPrice() {
+    public double calculatePrice() {
         pricingService = new PricingService();
         double unitPrice = 0.0;
         // get the base price of the sandwich base on size

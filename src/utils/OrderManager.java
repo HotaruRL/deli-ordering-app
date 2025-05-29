@@ -2,7 +2,6 @@ package utils;
 
 import merch.LineItem;
 import merch.Sandwich;
-import screens.OrderScreen;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -72,7 +71,7 @@ public class OrderManager {
         String SPACE = " ";
         for (LineItem item : order.getLineItems()){
             String itemDescription = item.getReceiptDetails();
-            String itemPrice = String.format("$%.2f", item.calculateUnitPrice());
+            String itemPrice = String.format("$%.2f", item.calculatePrice());
 
             // to calculate the space between description and price
             int descriptionLength = (itemNumber + ". ").length() + itemDescription.length();

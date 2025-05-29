@@ -1,5 +1,6 @@
 package screens;
 
+import merch.Chips;
 import merch.Drink;
 import merch.Sandwich;
 import utils.OrderManager;
@@ -40,7 +41,12 @@ public class OrderScreen extends Screen{
                     DrinkScreen drinkScreen = new DrinkScreen(orderManager, currentItemIndex);
                     drinkScreen.display();
                 }
-                case 3 -> System.out.println("Chips Order Screen\n");
+                case 3 -> {
+                    orderManager.getCurrentOrder().addItem(new Chips());
+                    int currentItemIndex = menuUtils.getIndexOfLastItem(orderManager.getCurrentOrder().getLineItems());
+                    ChipsScreen chipsScreen = new ChipsScreen(orderManager, currentItemIndex);
+                    chipsScreen.display();
+                }
                 case 4 -> System.out.println("Checkout Screen\n");
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");

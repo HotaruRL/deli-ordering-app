@@ -26,8 +26,8 @@ public class PricingService {
         return Double.parseDouble(drinkPriceChart.get(size)) * quantity;
     }
 
-    public double getChipsPrice() {
-        return CHIPS_PRICE;
+    public double getChipsPrice(int quantity) {
+        return CHIPS_PRICE * quantity;
     }
 
     public double getSpecificPrice(String sandwichSize, String priceFor){
@@ -58,7 +58,7 @@ public class PricingService {
     public double getSubTotal(ArrayList<LineItem> lineItems){
         double subTotal = 0;
         for (LineItem item : lineItems){
-            subTotal += item.calculateUnitPrice();
+            subTotal += item.calculatePrice();
         }
         return subTotal;
     }
