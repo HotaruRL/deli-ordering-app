@@ -22,8 +22,8 @@ public class PricingService {
         this.drinkPriceChart = fileUtils.parse2Columns(DRINK_PRICES_FILE_PATH);
     }
 
-    public double getDrinkPrice(String size){
-        return Double.parseDouble(drinkPriceChart.get(size));
+    public double getDrinkPrice(String size, int quantity){
+        return Double.parseDouble(drinkPriceChart.get(size)) * quantity;
     }
 
     public double getChipsPrice() {
