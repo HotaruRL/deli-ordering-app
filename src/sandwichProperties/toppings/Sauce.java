@@ -1,9 +1,9 @@
 package sandwichProperties.toppings;
 
-public class Meat extends Topping {
+public class Sauce extends Topping{
     private String name;
 
-    public Meat(String name) {
+    public Sauce(String name) {
         super(name);
         this.name = name;
     }

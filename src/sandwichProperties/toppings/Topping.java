@@ -3,5 +3,9 @@ package sandwichProperties.toppings;
 abstract public class Topping {
     protected String toppingName;
 
-    public abstract String getToppingName();
+    public Topping(String toppingName){
+        this.toppingName = toppingName;
+    }
+
+    public String getToppingName(){return toppingName;};
 }

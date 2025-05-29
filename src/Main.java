@@ -1,9 +1,7 @@
 import screens.HomeScreen;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
+import screens.Screen;
+import utils.MenuUtils;
+import utils.OrderManager;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,8 +27,8 @@ public class Main {
 //        fileUtils.createFile(now);
 
 //        System.out.println("---------10--------20--------30--------40--------50--------60--------70--------80");
-
-        HomeScreen homeScreen = new HomeScreen();
+        OrderManager sharedOrderManager = new OrderManager();
+        HomeScreen homeScreen = new HomeScreen(sharedOrderManager);
         homeScreen.display();
     }
 }

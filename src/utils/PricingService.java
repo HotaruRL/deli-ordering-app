@@ -17,11 +17,6 @@ public class PricingService {
     private FileUtils fileUtils;
 
     public PricingService(){
-        this.fileUtils = new FileUtils();
-        loadPrices();
-    }
-
-    public void loadPrices(){
         fileUtils = new FileUtils();
         this.sandwichPriceChart = fileUtils.parseMultipleColumns(SANDWICH_PRICES_FILE_PATH);
         this.drinkPriceChart = fileUtils.parse2Columns(DRINK_PRICES_FILE_PATH);

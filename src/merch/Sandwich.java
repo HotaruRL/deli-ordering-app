@@ -13,6 +13,7 @@ public class Sandwich implements LineItem {
     private boolean isToasted;
     private PricingService pricingService;
 
+    public Sandwich(){}
     public Sandwich(String sandwichSize, BreadType breadType, ArrayList<SelectedTopping> selectedToppings, boolean isToasted){
         this.sandwichSize = sandwichSize;
         this.breadType = breadType;
@@ -31,6 +32,9 @@ public class Sandwich implements LineItem {
     public void setSelectedToppings(ArrayList<SelectedTopping> selectedToppings) {this.selectedToppings = selectedToppings;}
     public void setToasted(boolean toasted) {isToasted = toasted;}
 
+    public void addTopping(SelectedTopping topping){
+        this.selectedToppings.add(topping);
+    }
     @Override
     public double calculateUnitPrice() {
         pricingService = new PricingService();

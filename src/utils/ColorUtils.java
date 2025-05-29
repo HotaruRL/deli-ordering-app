@@ -8,4 +8,6 @@ public class ColorUtils {
     public static final String BLUE = "\u001B[34m";
     public static final String MAGENTA = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
+    public static final String BRIGHT_BLACK = "\u001B[90m";
+    public static final String BRIGHT_WHITE = "\u001B[97m";
 }

@@ -2,19 +2,24 @@ package utils;
 
 import merch.LineItem;
 import merch.Sandwich;
+import screens.OrderScreen;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OrderManager {
+    private Order order;
+    private ArrayList<Order> orders = new ArrayList<>();
     private LocalTime openingTime = LocalTime.of(6,59);
     private LocalTime closingTime = LocalTime.of(17,00);
     private FileUtils fileUtils;
     private TextUtils textUtils;
     private static final String SHOP_INFO_FILE_PATH = "shopInfo.csv";
 
-    OrderManager(){
+    public OrderManager(){
         this.fileUtils = new FileUtils();
         this.textUtils = new TextUtils();
     }
@@ -25,6 +30,16 @@ public class OrderManager {
             isOpen = true;
         }
         return isOpen;
+    }
+
+    public void createNewOrder(){
+        int orderID = this.orders.size() + 1;
+        this.order = new Order(orderID, LocalDateTime.now(),new ArrayList<LineItem>());
+        this.orders.add(this.order);
+    }
+
+    public Order getCurrentOrder() {
+        return this.order;
     }
 
     public String createReceipt(Order order){
