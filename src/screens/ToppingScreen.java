@@ -40,7 +40,7 @@ public class ToppingScreen extends Screen {
                 userInput = menuUtils.getInt("your choice");
                 if (userInput == 0) {
                     break;
-                } else if (userInput > 0 && userInput <= list.size()) {
+                } else if (userInput > 0 && userInput < list.size()) {
                     String selectedToppingName = list.get(userInput - 1);
                     Topping currentTopping = null;
                     // convert string to Topping Object
@@ -102,10 +102,36 @@ public class ToppingScreen extends Screen {
                     } else {
                         System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
                     }
+                }else if (userInput >= list.size()) {
+                    System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
                 }
             }
             // only update step number once user is done with a section, so that each topping type has a static number in front
             step++;
         }
+        getSandwichToasted();
+    }
+
+    public void getSandwichToasted(){
+        ArrayList<String> toasted = new ArrayList<>();
+        toasted.add(RED + "Toast" + RESET + " It");
+        toasted.add(RED + "DON'T" + RESET + " Toast It");
+
+        int userInput = -1;
+        while (userInput != -2) {
+            menuUtils.setMenu("8. Toast the Bread?",toasted," ","-",10);
+            userInput = menuUtils.getInt("your selection");
+            switch (userInput) {
+                case 1 -> {
+                    currentSandwich.setToasted(true);
+                }
+                case 0 -> {
+                    currentSandwich.setToasted(false);
+                }
+                default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
+            }
+            userInput = -2;
+        }
+        menuUtils.confirmAdd(currentSandwich);
     }
 }

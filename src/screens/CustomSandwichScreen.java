@@ -54,6 +54,7 @@ public class CustomSandwichScreen extends Screen{
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
+            userInput = 0;
             getSandwichSize();
         }
     }
@@ -85,8 +86,8 @@ public class CustomSandwichScreen extends Screen{
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
+            userInput = 0;
             toppingScreen.display();
         }
     }
-
 }

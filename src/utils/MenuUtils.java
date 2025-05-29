@@ -1,10 +1,10 @@
 package utils;
 
 import merch.LineItem;
+import merch.Sandwich;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static utils.ColorUtils.*;
@@ -19,6 +19,42 @@ public class MenuUtils {
         this.fileUtils = new FileUtils();
         this.textUtils = new TextUtils();
         this.scanner = new Scanner(System.in);
+    }
+    public void confirmAdd(LineItem item){
+        StringBuilder confirmation = new StringBuilder();
+        int LINE_WIDTH = 40;
+        String SPACE = " ";
+
+        String itemDescription = item.getReceiptDetails();
+        String itemPrice = String.format("$%.2f", item.calculateUnitPrice());
+
+        // to calculate the space between description and price
+        int descriptionLength = itemDescription.length();
+        int priceLength = itemPrice.length();
+        int spaceNeeded = LINE_WIDTH - (descriptionLength + priceLength);
+        // make sure to have at least 1 space between description and price
+        if (spaceNeeded < 1){
+            spaceNeeded = 1;
+        }
+
+        confirmation.append(String.format("%s%s%s\n",
+                itemDescription,
+                SPACE.repeat(spaceNeeded),
+                itemPrice));
+
+        // if item is a sandwich, add additional details
+        if (item instanceof Sandwich){
+            for (String detail : ((Sandwich) item).getAdditionDetails()){
+                if (detail == null){
+                    continue;
+                }
+                confirmation.append(detail).append("\n");
+            }
+        }
+        // add a line break after each line item
+        confirmation.append("\n");
+
+        System.out.println(String.format(GREEN+"\nThe following item has been successfully added to your order!\n"+RESET+confirmation));
     }
 
     public int getIndexOfLastItem(ArrayList<LineItem> list){

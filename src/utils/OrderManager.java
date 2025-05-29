@@ -92,6 +92,9 @@ public class OrderManager {
             // if item is a sandwich, add additional details
             if (item instanceof Sandwich){
                 for (String detail : ((Sandwich) item).getAdditionDetails()){
+                    if (detail == null){
+                        continue;
+                    }
                     receipt.append(detail).append("\n");
                 }
             }
