@@ -27,18 +27,19 @@ public class Drink implements LineItem {
     public void setIsCustomizing(String isCustomizing) {this.isCustomizing = isCustomizing;}
 
     @Override
-    public double calculatePrice() {
+    public double getPrice() {
         pricingService = new PricingService();
-        return pricingService.getDrinkPrice(this.size, this.quantity);
+        return pricingService.calculateDrinkPrice(this.size, this.quantity);
     }
 
-    public double calculateUnitPrice() {
+    @Override
+    public double getUnitPrice() {
         pricingService = new PricingService();
-        return pricingService.getDrinkPrice(this.size, this.quantity) / this.quantity;
+        return pricingService.calculateDrinkPrice(this.size);
     }
 
     @Override
     public String getReceiptDetails() {
-        return String.format("%s (%s)\n%.2f/ea. x%d", this.drinkName, this.size, calculateUnitPrice(), this.quantity);
+        return String.format("%s (%s)", this.drinkName, this.size);
     }
 }

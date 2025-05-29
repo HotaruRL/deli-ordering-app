@@ -3,34 +3,36 @@ package screens;
 import merch.Chips;
 import merch.Drink;
 import merch.Sandwich;
+import utils.Order;
 import utils.OrderManager;
 
 import java.util.ArrayList;
 import static utils.ColorUtils.*;
 
 public class OrderScreen extends Screen{
+    Order currentOrder;
 
-    public OrderScreen(OrderManager orderManager){
+    public OrderScreen(OrderManager orderManager, Order currentOrder){
         super(orderManager);
-
+        this.currentOrder = currentOrder;
     }
 
     @Override
     public void display() {
-
         ArrayList<String> options = new ArrayList<>();
         options.add(RED + "Add" + RESET + " Sandwich");
         options.add(RED + "Add" + RESET + " Drink");
         options.add(RED + "Add" + RESET + " Chips");
         options.add(RED + "Checkout" + RESET);
         options.add(RED + "Cancel" + RESET + " Order");
+
         int userInput = -1;
         while (userInput != 0) {
             menuUtils.setMenu("Order Screen",options,"*","-",3);
             userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
                 case 1 -> {
-                    orderManager.getCurrentOrder().addItem(new Sandwich());
+                    orderManager.getCurrentOrder().addItem(new Sandwich(1));
                     int currentItemIndex = menuUtils.getIndexOfLastItem(orderManager.getCurrentOrder().getLineItems());
                     SandwichScreen sandwichScreen = new SandwichScreen(orderManager, currentItemIndex);
                     sandwichScreen.display();
@@ -47,9 +49,15 @@ public class OrderScreen extends Screen{
                     ChipsScreen chipsScreen = new ChipsScreen(orderManager, currentItemIndex);
                     chipsScreen.display();
                 }
-                case 4 -> System.out.println("Checkout Screen\n");
+                case 4 -> {
+                    CheckoutScreen checkoutScreen = new CheckoutScreen(orderManager);
+                    checkoutScreen.display();
+                }
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
+            }
+            if (currentOrder.getIsCustomizing() != null){
+                userInput = 0;
             }
         }
     }

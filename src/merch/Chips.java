@@ -23,18 +23,19 @@ public class Chips implements LineItem {
     public void setIsCustomizing(String isCustomizing) {this.isCustomizing = isCustomizing;}
 
     @Override
-    public double calculatePrice() {
+    public double getPrice() {
         pricingService = new PricingService();
-        return pricingService.getChipsPrice(this.quantity);
+        return pricingService.calculateChipsPrice(this.quantity);
     }
 
-    public double calculateUnitPrice() {
+    @Override
+    public double getUnitPrice() {
         pricingService = new PricingService();
-        return pricingService.getChipsPrice(this.quantity) / this.quantity;
+        return pricingService.calculateChipsPrice();
     }
 
     @Override
     public String getReceiptDetails() {
-        return String.format("Chips: %s\n%.2f/ea. x%d", this.chipName, calculateUnitPrice(), this.quantity);
+        return String.format("Chips: %s", this.chipName);
     }
 }

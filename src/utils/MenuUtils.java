@@ -26,11 +26,11 @@ public class MenuUtils {
     // show confirmation with the added item's details
     public void confirmAdd(LineItem item){
         StringBuilder confirmation = new StringBuilder();
-        int LINE_WIDTH = 40;
+        int LINE_WIDTH = 60;
         String SPACE = " ";
 
         String itemDescription = item.getReceiptDetails();
-        String itemPrice = String.format("$%.2f", item.calculatePrice());
+        String itemPrice = String.format("$%.2f", item.getPrice());
 
         // to calculate the space between description and price
         int descriptionLength = itemDescription.length();
@@ -48,7 +48,7 @@ public class MenuUtils {
 
         // if item is a sandwich, add additional details
         if (item instanceof Sandwich){
-            for (String detail : ((Sandwich) item).getAdditionDetails()){
+            for (String detail : ((Sandwich) item).getAdditionDetails(false)){
                 if (detail == null){
                     continue;
                 }

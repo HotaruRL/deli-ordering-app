@@ -115,21 +115,13 @@ public class FileUtils {
 
     // create a new file into the folder in [folderPath]
     // using the getFileName to name the new file from a LocalDateTime value
-    public void createFile(LocalDateTime orderDateTime){
+    // write the order info into the file
+    public void writeToFile(LocalDateTime orderDateTime, String orderInfo){
         String folderPath = "receipts";
         String fullPath = folderPath + File.separator + getFileName(orderDateTime);
         File receipt = new File(fullPath);
-        try{
-            FileWriter fileWriter = new FileWriter(receipt);
-        }catch (Exception e){
-            System.out.println("Error: " + e.toString());
-        }
-    }
-
-    // write the order info into the file with filename derived from getFileName()
-    public void writeToFile(LocalDateTime orderDateTime, String orderInfo){
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(getFileName(orderDateTime)));
+            bufferedWriter = new BufferedWriter(new FileWriter(receipt));
             bufferedWriter.write(orderInfo);
             bufferedWriter.flush();
             bufferedWriter.close();

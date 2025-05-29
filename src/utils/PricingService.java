@@ -22,11 +22,30 @@ public class PricingService {
         this.drinkPriceChart = fileUtils.parse2Columns(DRINK_PRICES_FILE_PATH);
     }
 
-    public double getDrinkPrice(String size, int quantity){
+    public double calculateSubTotal(ArrayList<LineItem> lineItems){
+        double subTotal = 0;
+        for (LineItem item : lineItems){
+            subTotal += item.getPrice();
+        }
+        return subTotal;
+    }
+
+    public double calculateTotal(double subTotal, double sale_taxes){
+        return subTotal * (1 + sale_taxes);
+    }
+
+    public double calculateDrinkPrice(String size){
+        return Double.parseDouble(drinkPriceChart.get(size));
+    }
+
+    public double calculateDrinkPrice(String size, int quantity){
         return Double.parseDouble(drinkPriceChart.get(size)) * quantity;
     }
 
-    public double getChipsPrice(int quantity) {
+    public double calculateChipsPrice() {
+        return CHIPS_PRICE;
+    }
+    public double calculateChipsPrice(int quantity) {
         return CHIPS_PRICE * quantity;
     }
 
@@ -53,17 +72,5 @@ public class PricingService {
         }else {
             return 0;
         }
-    }
-
-    public double getSubTotal(ArrayList<LineItem> lineItems){
-        double subTotal = 0;
-        for (LineItem item : lineItems){
-            subTotal += item.calculatePrice();
-        }
-        return subTotal;
-    }
-
-    public double getTotal(double subTotal, double sale_taxes){
-        return subTotal * (1 + sale_taxes);
     }
 }
