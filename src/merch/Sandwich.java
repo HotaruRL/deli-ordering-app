@@ -1,6 +1,7 @@
 package merch;
 
 import sandwichProperties.*;
+import sandwichProperties.toppings.Cheese;
 import sandwichProperties.toppings.Topping;
 import utils.PricingService;
 
@@ -12,6 +13,7 @@ public class Sandwich implements LineItem {
     private ArrayList<SelectedTopping> selectedToppings;
     private boolean isToasted;
     private PricingService pricingService;
+    private String isCustomizing;
 
     public Sandwich(){}
     public Sandwich(String sandwichSize, BreadType breadType, ArrayList<SelectedTopping> selectedToppings, boolean isToasted){
@@ -26,11 +28,14 @@ public class Sandwich implements LineItem {
     public BreadType getBreadType() {return breadType;}
     public ArrayList<SelectedTopping> getSelectedToppings() {return selectedToppings;}
     public boolean isToasted() {return isToasted;}
+    public String getIsCustomizing() {return isCustomizing;}
+
     // setters
     public void setSandwichSize(String sandwichSize) {this.sandwichSize = sandwichSize;}
     public void setBreadType(BreadType breadType) {this.breadType = breadType;}
     public void setSelectedToppings(ArrayList<SelectedTopping> selectedToppings) {this.selectedToppings = selectedToppings;}
     public void setToasted(boolean toasted) {isToasted = toasted;}
+    public void setIsCustomizing(String isCustomizing) {this.isCustomizing = isCustomizing;}
 
     public void addTopping(SelectedTopping topping){
         this.selectedToppings.add(topping);
@@ -52,7 +57,7 @@ public class Sandwich implements LineItem {
 
     @Override
     public String getReceiptDetails() {
-        return String.format("Custom Sandwich (%s)", this.sandwichSize);
+        return String.format("Custom Sandwich (%s\")", this.sandwichSize);
     }
 
     public ArrayList<String> getAdditionDetails(){
@@ -62,7 +67,11 @@ public class Sandwich implements LineItem {
         details.add(String.format(indent + "Toasted: %s", this.isToasted ? "Yes" : "No"));
         details.add(indent + "Toppings:");
         for (SelectedTopping topping : this.selectedToppings){
-            details.add(String.format(indent + "- %s", topping.getDisplayName()));
+            if (topping.getTopping() instanceof Cheese){
+                details.add(String.format(indent + "- cheese: %s", topping.getDisplayName()));
+            }else {
+                details.add(String.format(indent + "- %s", topping.getDisplayName()));
+            }
         }
         return details;
     }

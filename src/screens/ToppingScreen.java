@@ -76,20 +76,24 @@ public class ToppingScreen extends Screen {
                                 ArrayList<String> addExtra = new ArrayList<>();
                                 addExtra.add(String.format(RED + "Add" + RESET + " Extra" + BLUE + " %s" + RESET, selectedToppingName));
                                 addExtra.add(RED + "Skip" + RESET);
-                                menuUtils.setMenu("Add Extra Topping?", addExtra, " ", "-", 10);
-                                System.out.printf(BLUE + "'%s' is already added. Would you like to make it extra?%n" + RESET, selectedToppingName);
                                 userInput = -1;
-                                userInput = menuUtils.getInt("your selection");
-                                switch (userInput) {
-                                    case 1 ->{
-                                        existingMatch.setExtra(true);
-                                        currentSandwich.addTopping(selectedTopping);
-                                        System.out.printf(GREEN + "%s has been successfully added!\n" + RESET, selectedTopping.getDisplayName());
-                                    }
-                                    case 0 ->
+                                while (userInput != -2) {
+                                    menuUtils.setMenu("Add Extra Topping?", addExtra, " ", "-", 10);
+                                    System.out.printf(BLUE + "'%s' is already added. Would you like to make it extra?%n" + RESET, selectedToppingName);
+                                    userInput = menuUtils.getInt("your selection");
+                                    switch (userInput) {
+                                        case 1 -> {
+                                            existingMatch.setExtra(true);
+                                            currentSandwich.addTopping(selectedTopping);
+                                            System.out.printf(GREEN + "%s has been successfully added!\n" + RESET, selectedTopping.getDisplayName());
+                                            userInput = -2;
+                                        }
+                                        case 0 ->{
                                             System.out.printf(RED + "%s has been skipped!\n" + RESET, selectedToppingName);
-                                    default ->
-                                            System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
+                                            userInput = -2;
+                                        }
+                                        default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
+                                    }
                                 }
                             } else {
                                 // It exists and IS ALREADY extra.
@@ -124,14 +128,16 @@ public class ToppingScreen extends Screen {
             switch (userInput) {
                 case 1 -> {
                     currentSandwich.setToasted(true);
+                    userInput = -2;
                 }
                 case 0 -> {
                     currentSandwich.setToasted(false);
+                    userInput = -2;
                 }
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
-            userInput = -2;
         }
         menuUtils.confirmAdd(currentSandwich);
+        currentSandwich.setIsCustomizing("done");
     }
 }

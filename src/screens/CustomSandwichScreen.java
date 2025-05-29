@@ -38,28 +38,34 @@ public class CustomSandwichScreen extends Screen{
                 case 1 -> {
                     System.out.println("You chose "+ BreadType.WHITE.getDisplayName() + "\n");
                     currentSandwich.setBreadType(BreadType.WHITE);
+                    getSandwichSize();
                 }
                 case 2 -> {
                     System.out.println("You chose "+ BreadType.WHEAT.getDisplayName() + "\n");
                     currentSandwich.setBreadType(BreadType.WHEAT);
+                    getSandwichSize();
                 }
                 case 3 -> {
                     System.out.println("You chose "+ BreadType.RYE.getDisplayName() + "\n");
                     currentSandwich.setBreadType(BreadType.RYE);
+                    getSandwichSize();
                 }
                 case 4 -> {
                     System.out.println("You chose "+ BreadType.WRAP.getDisplayName() + "\n");
                     currentSandwich.setBreadType(BreadType.WRAP);
+                    getSandwichSize();
                 }
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
-            userInput = 0;
-            getSandwichSize();
+            if (currentSandwich.getIsCustomizing() != null){
+                userInput = 0;
+            }
         }
     }
 
     public void getSandwichSize(){
+
         ArrayList<String> sizeOptions = new ArrayList<>();
         sizeOptions.add(RED + "4\"" + RESET + " Small");
         sizeOptions.add(RED + "8\"" + RESET + " Medium");
@@ -74,20 +80,24 @@ public class CustomSandwichScreen extends Screen{
                 case 1 -> {
                     System.out.println("You chose 4\" Small \n");
                     currentSandwich.setSandwichSize("4");
+                    toppingScreen.display();
+                    return;
                 }
                 case 2 -> {
                     System.out.println("You chose 8\" Medium \n");
                     currentSandwich.setSandwichSize("8");
+                    toppingScreen.display();
+                    return;
                 }
                 case 3 -> {
                     System.out.println("You chose 12\" Large \n");
                     currentSandwich.setSandwichSize("12");
+                    toppingScreen.display();
+                    return;
                 }
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
-            userInput = 0;
-            toppingScreen.display();
         }
     }
 }

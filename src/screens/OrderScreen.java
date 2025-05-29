@@ -10,10 +10,12 @@ public class OrderScreen extends Screen{
 
     public OrderScreen(OrderManager orderManager){
         super(orderManager);
+
     }
 
     @Override
     public void display() {
+
         ArrayList<String> options = new ArrayList<>();
         options.add(RED + "Add" + RESET + " Sandwich");
         options.add(RED + "Add" + RESET + " Drink");

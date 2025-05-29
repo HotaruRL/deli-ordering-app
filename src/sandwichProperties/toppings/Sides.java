@@ -5,6 +5,7 @@ public class Sides extends Topping{
 
     public Sides(String name) {
         super(name);
+        this.name = name;
     }
 
     public void setName(String name) {this.name = name;}

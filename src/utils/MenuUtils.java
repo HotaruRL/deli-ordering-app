@@ -20,6 +20,7 @@ public class MenuUtils {
         this.textUtils = new TextUtils();
         this.scanner = new Scanner(System.in);
     }
+
     public void confirmAdd(LineItem item){
         StringBuilder confirmation = new StringBuilder();
         int LINE_WIDTH = 40;
