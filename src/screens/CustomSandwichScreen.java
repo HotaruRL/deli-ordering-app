@@ -63,7 +63,7 @@ public class CustomSandwichScreen extends Screen{
                 case 0 -> {return;}
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
-            if (currentSandwich.getIsCustomizing() != null){
+            if (currentSandwich.getIsCustomizing() != null) {
                 userInput = 0;
             }
         }

@@ -32,7 +32,7 @@ public class SandwichScreen extends Screen{
             userInput = menuUtils.getInt("your choice");
             switch (userInput) {
                 case 1 -> {
-                    CustomSandwichScreen customSandwichScreen = new CustomSandwichScreen(orderManager,currentItemIndex);
+                    CustomSandwichScreen customSandwichScreen = new CustomSandwichScreen(orderManager, currentItemIndex);
                     customSandwichScreen.display();
                 }
                 case 2 -> {

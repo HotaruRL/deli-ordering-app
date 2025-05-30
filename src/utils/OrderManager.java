@@ -14,28 +14,28 @@ import java.util.HashMap;
 public class OrderManager {
     private Order order;
     private ArrayList<Order> orders = new ArrayList<>();
-    private LocalTime openingTime = LocalTime.of(6,59);
-    private LocalTime closingTime = LocalTime.of(17,00);
+    private LocalTime openingTime = LocalTime.of(6, 59);
+    private LocalTime closingTime = LocalTime.of(17, 00);
     private FileUtils fileUtils;
     private TextUtils textUtils;
     private static final String SHOP_INFO_FILE_PATH = "internalUse\\shopInfo.csv";
 
-    public OrderManager(){
+    public OrderManager() {
         this.fileUtils = new FileUtils();
         this.textUtils = new TextUtils();
     }
 
-    public boolean isStoreOpened(LocalTime orderTime){
+    public boolean isStoreOpened(LocalTime orderTime) {
         boolean isOpen = false;
-        if (orderTime.isAfter(openingTime) && orderTime.isBefore(closingTime)){
+        if (orderTime.isAfter(openingTime) && orderTime.isBefore(closingTime)) {
             isOpen = true;
         }
         return isOpen;
     }
 
-    public void createNewOrder(){
+    public void createNewOrder() {
         int orderID = this.orders.size() + 1;
-        this.order = new Order(orderID, LocalDateTime.now(),new ArrayList<LineItem>());
+        this.order = new Order(orderID, LocalDateTime.now(), new ArrayList<LineItem>());
         this.orders.add(this.order);
     }
 
@@ -43,11 +43,11 @@ public class OrderManager {
         return this.order;
     }
 
-    public void showCurrentOrder(String receipt){
-        System.out.println("\n"+receipt+"\n");
+    public void showCurrentOrder(String receipt) {
+        System.out.println("\n" + receipt + "\n");
     }
 
-    public String createReceipt(Order order){
+    public String createReceipt(Order order) {
         StringBuilder receipt = new StringBuilder();
         int LINE_WIDTH = 60;
         String SEPARATOR = textUtils.createPattern("-", LINE_WIDTH);
@@ -75,7 +75,7 @@ public class OrderManager {
         // items
         int itemNumber = 1;
         String SPACE = " ";
-        for (LineItem item : order.getLineItems()){
+        for (LineItem item : order.getLineItems()) {
             String itemDescription = item.getReceiptDetails();
             String itemPrice = String.format("$%.2f", item.getPrice());
             String itemUnitPrice = String.format("$%.2f/ea", item.getUnitPrice());
@@ -83,11 +83,11 @@ public class OrderManager {
 
             // to calculate the space between description and price
             int itemNumberLength = (itemNumber + ". ").length();
-            int descriptionLength =  itemNumberLength + itemDescription.length();
+            int descriptionLength = itemNumberLength + itemDescription.length();
             int priceLength = itemPrice.length();
             int spaceNeeded = LINE_WIDTH - (descriptionLength + priceLength);
             // make sure to have at least 1 space between description and price
-            if (spaceNeeded < 1){
+            if (spaceNeeded < 1) {
                 spaceNeeded = 1;
             }
 
@@ -109,9 +109,9 @@ public class OrderManager {
                     itemPrice));
 
             // if item is a sandwich, add additional details
-            if (item instanceof Sandwich){
-                for (String detail : ((Sandwich) item).getAdditionDetails(true)){
-                    if (detail == null){
+            if (item instanceof Sandwich) {
+                for (String detail : ((Sandwich) item).getAdditionDetails(true)) {
+                    if (detail == null) {
                         continue;
                     }
                     receipt.append(indent).append(detail).append("\n");
@@ -136,7 +136,7 @@ public class OrderManager {
         return receipt.toString();
     }
 
-    public void saveReceipt(Order order){
-        fileUtils.writeToFile(order.getOrderDateTime(),createReceipt(order));
+    public void saveReceipt(Order order) {
+        fileUtils.writeToFile(order.getOrderDateTime(), createReceipt(order));
     }
 }

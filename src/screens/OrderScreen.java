@@ -7,12 +7,13 @@ import utils.Order;
 import utils.OrderManager;
 
 import java.util.ArrayList;
+
 import static utils.ColorUtils.*;
 
-public class OrderScreen extends Screen{
-    Order currentOrder;
+public class OrderScreen extends Screen {
+    public Order currentOrder;
 
-    public OrderScreen(OrderManager orderManager, Order currentOrder){
+    public OrderScreen(OrderManager orderManager, Order currentOrder) {
         super(orderManager);
         this.currentOrder = currentOrder;
     }
@@ -28,7 +29,7 @@ public class OrderScreen extends Screen{
 
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("Order Screen",options,"*","-",3);
+            menuUtils.setMenu("Order Screen", options, "*", "-", 3);
             userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
                 case 1 -> {
@@ -53,10 +54,12 @@ public class OrderScreen extends Screen{
                     CheckoutScreen checkoutScreen = new CheckoutScreen(orderManager);
                     checkoutScreen.display();
                 }
-                case 0 -> {return;}
+                case 0 -> {
+                    return;
+                }
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
-            if (currentOrder.getIsCustomizing() != null){
+            if (currentOrder.getIsCustomizing() != null) {
                 userInput = 0;
             }
         }
