@@ -14,7 +14,7 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 *   [🚀 Core Features](#-core-features)
 *   [✨ User-Friendly Features](#-user-friendly-features)
 *   [🛣️ Future Enhancements](#%EF%B8%8F-future-enhancements)
-*   [🗺️ Diagrams](#-core-features)
+*   [🗺️ Diagrams](#%EF%B8%8F-diagrams)
 *   [📸 Screenshots](#-screenshots)
 *   [💡 Interesting Code Snippets](#-interesting-code)
 
