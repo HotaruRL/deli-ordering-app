@@ -161,6 +161,7 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 <html>
 <details>
 <summary>Code</summary>
+
 ```java
 public SelectedTopping findToppingType(String nameToLookUp, HashMap<String, ArrayList<String>> toppingChart) {
         Topping toppingObject = null;
@@ -196,8 +197,10 @@ public SelectedTopping findToppingType(String nameToLookUp, HashMap<String, Arra
         return null;
     }
 ```
+
 </details>
 </html>
+
 ### 4.  
 
 
