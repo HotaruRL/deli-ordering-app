@@ -14,6 +14,7 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 *   [🚀 Core Features](#-core-features)
 *   [✨ User-Friendly Features](#-user-friendly-features)
 *   [🛣️ Future Enhancements](#%EF%B8%8F-future-enhancements)
+*   [🗺️ Diagrams](#-core-features)
 *   [📸 Screenshots](#-screenshots)
 *   [💡 Interesting Code Snippets](#-interesting-code)
 
@@ -77,6 +78,22 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
   - For managing menu items, prices, and store hours
 - [ ] ✅ **Unit Testing**
   - Implementing JUnit tests for better code reliability
+
+# 🗺️ Diagrams
+
+<html>
+<h3>Classes Diagram</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="deliOrderingAppClasses-version0.4" src="https://github.com/HotaruRL/deli-ordering-app/blob/master/img/deliOrderingAppClasses-version0.4.png"></p>
+</details>
+
+<h3>Flow Diagram</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="deliOrderingAppFlow-version0.2" src="https://github.com/HotaruRL/deli-ordering-app/blob/master/img/deliOrderingAppFlow-version0.2.png"></p>
+</details>
+</html>
 
 # 📸 Screenshots
 
