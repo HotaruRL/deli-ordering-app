@@ -2,7 +2,6 @@ package screens;
 
 import merch.Sandwich;
 import sandwichProperties.SelectedTopping;
-import sandwichProperties.toppings.*;
 import utils.OrderManager;
 
 import java.util.ArrayList;
@@ -142,7 +141,8 @@ public class ToppingScreen extends Screen {
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
             }
         }
-        menuUtils.confirmAdd(currentSandwich);
+        menuUtils.showDetails(currentSandwich);
+        System.out.println(String.format(GREEN+"\nThe item above has been successfully added to your order!\n"+RESET));
         currentSandwich.setIsCustomizing("done");
     }
 }

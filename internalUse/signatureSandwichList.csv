@@ -1,0 +1,11 @@
+name|sandwichSize|breadType|isToasted|selectedToppings
+Philly Cheesesteak|8|White|Y|steak,provolone,onions,peppers,mayo
+Classic Club|8|White|Y|chicken,bacon,cheddar,lettuce,tomatoes,mayo
+Spicy Italian Supreme|12|White|Y|salami,ham,provolone,peppers,onions,jalapenos,lettuce,tomatoes,vinaigrette
+Veggie Guac Delight|8|Wheat|N|swiss,lettuce,tomatoes,cucumbers,peppers,onions,mushrooms,guacamole,vinaigrette
+Roast Beef & Cheddar Classic|8|Rye|Y|roast beef,cheddar,lettuce,onions,mayo,mustard
+Chicken Bacon Ranch Wrap|12|Wrap|N|chicken,bacon,cheddar,lettuce,tomatoes,ranch
+The BLT Traditional|8|White|Y|bacon,lettuce,tomatoes,mayo
+Mega Meat Monster|12|Rye|Y|steak,ham,salami,roast beef,chicken,bacon,provolone,cheddar,onions,mustard,au jus
+Turkey & Swiss Standard|8|Wheat|N|ham,swiss,lettuce,tomatoes,mustard
+Salami Slam|4|White|Y|salami,provolone,peppers,vinaigrette

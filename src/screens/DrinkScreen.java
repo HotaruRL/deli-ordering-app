@@ -58,7 +58,8 @@ public class DrinkScreen extends Screen{
                 userInput = 0;
             }
         }
-        menuUtils.confirmAdd(currentDrink);
+        menuUtils.showDetails(currentDrink);
+        System.out.println(String.format(GREEN+"\nThe item above has been successfully added to your order!\n"+RESET));
     }
 
     public void chooseDrinkSize(){

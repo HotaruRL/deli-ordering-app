@@ -24,4 +24,11 @@ public class OptionsList {
         addExtra.add(RED + "Skip" + RESET);
         return addExtra;
     }
+
+    public ArrayList<String> promptCustomize(){
+        ArrayList<String> customize = new ArrayList<>();
+        customize.add(String.format(RED + "Yes!" + RESET + " Let's" + BLUE + " customize it" + RESET));
+        customize.add(RED + "No!" + RESET + " I like it that way");
+        return customize;
+    }
 }

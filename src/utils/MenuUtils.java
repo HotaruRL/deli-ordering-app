@@ -108,6 +108,7 @@ public class MenuUtils {
     }
 
     public SelectedTopping findToppingType(String nameToLookUp, HashMap<String, ArrayList<String>> toppingChart){
+        Topping toppingObject = null;
         if (nameToLookUp == null || toppingChart == null){
             return null;
         }
@@ -119,13 +120,34 @@ public class MenuUtils {
             String toppingType = entry.getKey();
             // list of options of current Topping Type
             ArrayList<String> options =entry.getValue();
-            // if options exist
+            // if options list is not empty
             if (options != null){
-
+                // compare to each option in that list
+                for (String option : options){
+                    if (option.trim().toLowerCase().equals(processedName)){
+                        switch (toppingType) {
+                            case "Meat" -> toppingObject = new Meat(option);
+                            case "Cheese" -> toppingObject = new Cheese(option);
+                            case "Other Toppings" -> toppingObject = new OtherToppings(option);
+                            case "Sauce" -> toppingObject = new Sauce(option);
+                            case "Sides" -> toppingObject = new Sides(option);
+                        }
+                        return new SelectedTopping(toppingObject, false);
+                    }
+                }
             }
         }
         // options list is empty or none match
         return null;
+    }
+
+    public void processToppingList(Sandwich currentsandwich, String toppings){
+        String[] toppingsList = toppings.trim().split(",");
+        currentsandwich.setSelectedToppings(new ArrayList<>());
+        for (String topping : toppingsList){
+            SelectedTopping toppingToAdd = findToppingType(topping, getToppingChart());
+            currentsandwich.addTopping(toppingToAdd);
+        }
     }
 
     // create a menu with options autopopulated and numbered from an ArrayList (the last item is numbered with [0])
@@ -186,7 +208,7 @@ public class MenuUtils {
     }
 
     // show confirmation with the added item's details
-    public void confirmAdd(LineItem item){
+    public void showDetails(LineItem item){
         StringBuilder confirmation = new StringBuilder();
         int LINE_WIDTH = 60;
         String SPACE = " ";
@@ -209,10 +231,12 @@ public class MenuUtils {
                 SPACE.repeat(spaceNeeded)));
 
         // to calculate the space between unit price + quantity and price
+        String indent = SPACE.repeat(3);
         int unitPriceLength = itemUnitPrice.length();
         int quantityLength = itemQuantity.length();
         int spaceNeeded2 = LINE_WIDTH - (unitPriceLength + quantityLength + priceLength);
         confirmation.append(String.format("%s%s%s%s%s\n",
+                indent,
                 itemUnitPrice,
                 itemQuantity,
                 SPACE.repeat(spaceNeeded2),
@@ -220,16 +244,16 @@ public class MenuUtils {
 
         // if item is a sandwich, add additional details
         if (item instanceof Sandwich){
-            for (String detail : ((Sandwich) item).getAdditionDetails(true)){
+            for (String detail : ((Sandwich) item).getAdditionDetails(false)){
                 if (detail == null){
                     continue;
                 }
-                confirmation.append(detail).append("\n");
+                confirmation.append(indent).append(detail).append("\n");
             }
         }
         // add a line break after each line item
         confirmation.append("\n");
 
-        System.out.println(String.format(GREEN+"\nThe following item has been successfully added to your order!\n"+RESET+confirmation));
+        System.out.println(confirmation);
     }
 }
