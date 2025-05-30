@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static utils.ColorUtils.*;
 
-public class ChipsScreen extends Screen{
+public class ChipsScreen extends Screen {
     int currentItemIndex;
     Chips currentChip;
     boolean isGoBack = false;
@@ -18,7 +18,7 @@ public class ChipsScreen extends Screen{
         this.currentChip = getCurrentChip(currentItemIndex);
     }
 
-    public Chips getCurrentChip(int currentItemIndex){
+    public Chips getCurrentChip(int currentItemIndex) {
         return (Chips) orderManager.getCurrentOrder().getLineItems().get(currentItemIndex);
     }
 
@@ -47,21 +47,21 @@ public class ChipsScreen extends Screen{
                 currentChip.setChipName(selectedChips);
                 System.out.printf(GREEN + "%s has been selected!\n" + RESET, currentChip.getChipName());
                 chooseChipQuantity();
-                if (isGoBack){
+                if (isGoBack) {
                     continue;
                 }
             } else {
                 System.out.println(RED + "Invalid option. Please try again!" + RESET);
             }
-            if (currentChip.getIsCustomizing() != null){
+            if (currentChip.getIsCustomizing() != null) {
                 userInput = 0;
             }
         }
         menuUtils.showDetails(currentChip);
-        System.out.println(String.format(GREEN+"\nThe item above has been successfully added to your order!\n"+RESET));
+        System.out.println(String.format(GREEN + "\nThe item above has been successfully added to your order!\n" + RESET));
     }
 
-    public void chooseChipQuantity(){
+    public void chooseChipQuantity() {
         int maxQuantity = 30;
 
         ArrayList<String> drinkQuantity = new ArrayList<>();
@@ -72,7 +72,7 @@ public class ChipsScreen extends Screen{
 
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("2. Chips Quantity Options",drinkQuantity," ","-",10);
+            menuUtils.setMenu("2. Chips Quantity Options", drinkQuantity, " ", "-", 10);
             userInput = menuUtils.getInt("your choice");
             switch (userInput) {
                 case 1 -> {
@@ -91,7 +91,7 @@ public class ChipsScreen extends Screen{
                         quantity = userIn;
                         if (userIn == 0) {
                             return;
-                        }else if (0 < quantity && quantity< maxQuantity) {
+                        } else if (0 < quantity && quantity < maxQuantity) {
                             currentChip.setQuantity(quantity);
                             userIn = 0;
                         } else {
@@ -100,7 +100,9 @@ public class ChipsScreen extends Screen{
                     }
                     userInput = 0;
                 }
-                case 0 -> {return;}
+                case 0 -> {
+                    return;
+                }
                 default -> System.out.println(RED + "Invalid option. Please try again!" + RESET + "\n");
             }
         }
