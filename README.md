@@ -137,9 +137,28 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 </html>
 
 # 💡 Interesting Code
-### 1.  **Dynamic Enum Display Names with ANSI Colors:**
-### 2.  **Flexible String to Boolean Conversion for User Input:**
+### 1.  **Create a dynamic menu from an ArrayList**
+```java
+// create a menu with options autopopulated and numbered from an ArrayList (the last item is numbered with [0])
+    public void setMenu(String menuName, ArrayList<String> options, String bordersChars, String paddingChars, int paddingLength) {
+        int optionNumber = 1;
+        StringBuilder output = new StringBuilder();
+        String header = textUtils.headerWithPadding(menuName, bordersChars, paddingChars, paddingLength);
+        output.append(header).append("\n");
+        for (String s : options) {
+            if (!s.equals(options.getLast())) {
+                output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", optionNumber, s)).append("\n");
+                optionNumber++;
+            } else {
+                output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", 0, s)).append("\n");
+            }
+        }
+        System.out.println(output);
+    }
+```
+### 2.  **Dynamic Enum Display Names with ANSI Colors:**
 ### 3.  **Reverse Lookup for Topping Type:**
-### 4.  **Create a dynamic menu from an ArrayList**
+### 4.  
+
 
 
