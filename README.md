@@ -60,6 +60,8 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 *   **Handling "Extra" Toppings:** Clear prompts when a topping is already selected, asking if the user wants to make it "extra" instead of just adding it again.
 
 # 🛣️ Future Enhancements
+- [ ] 💵 **Payment System**
+  - Processing payments
 - [ ] ⌚ **Store Hours & Future Orders**
   - Checking if the store is currently open based on pre-defined hours
   - Allowing users to schedule an order for a future date/time if the store is closed
@@ -77,27 +79,62 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
   - Implementing JUnit tests for better code reliability
 
 # 📸 Screenshots
-1.  **Home Screen:**
-    `[Image: Home screen showing "New Order" and "Exit" options, perhaps with a NioBites welcome message.]`
-    *Caption: The main entry point of our application.*
 
-2.  **Sandwich Customization - Bread & Size Selection:**
-    `[Image: CLI showing options for bread type, then sandwich size.]`
-    *Caption: Users select bread and size for their custom sandwich.*
+<html>
+<h3>Home Screen</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="01.homeScreen" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
 
-3.  **Topping Selection Process:**
-    `[Image: CLI showing a topping category (e.g., "Meat Options") with available toppings and an option to mark as extra.]`
-    *Caption: Intuitive topping selection with support for extra portions.*
+<h3>Order Screen</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="02.orderScreen" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
 
-4.  **Order Screen with Items:**
-    `[Image: CLI displaying the current order with a few items listed, and options to add more or checkout.]`
-    *Caption: Our order screen keeps track of all selected items.*
+<h3>Sandwich Screen</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="03.sandwichScreen" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
 
-5.  **Checkout Summary:**
-    `[Image: CLI showing the final order summary with itemized prices, subtotal, tax (if any), and total before confirmation.]`
-    *Caption: A clear breakdown of the order before payment.*
+<h3>Custom Sandwich Screen - Choose Bread Type</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="04.customSandwichScreen-breadType" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
 
-6.  **Generated Receipt File (Example Content):**
+<h3>Custom Sandwich Screen - Choose Bread Size</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="05.customSandwichScreen-breadSize" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
+
+<h3>Custom Sandwich Screen - Choose Toppings - Meat</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="06.customSandwichScreen-toppings-meat" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
+
+<h3>Custom Sandwich Screen - Choose Toppings - Add Extra</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="07.customSandwichScreen-toppings-addExtra" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
+
+<h3>Custom Sandwich Screen - Choose Toppings - Done</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="08.customSandwichScreen-done" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
+
+<h3>Custom Checkout Screen - Receipt Review</h3>
+<details>
+<summary>Images</summary>
+<p><img alt="09.checkoutScreen-receiptReview" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+</details>
+</html>
 
 # 💡 Interesting Code
 1.  **Dynamic Enum Display Names with ANSI Colors:**
