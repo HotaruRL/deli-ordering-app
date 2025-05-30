@@ -1,5 +1,6 @@
 
-<img alt="Project banner" src="https://github.com/HotaruRL/workshop-4-carDealership/blob/master/Workshop%204%20-%20Car%20Dealership.jpg">
+<img alt="Project banner" src="https://github.com/HotaruRL/workshop-4-carDealership/blob/master/Workshop%204%20-%20Car%20Dealership.jpg"></img>
+
 ### NioBites: A Java CLI application for ordering customizable deli sandwiches and sides.
 
 <a target="_blank" href="https://github.com/HotaruRL/deli-ordering-app/commits/master/" style="display: inline-block;"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/HotaruRL/deli-ordering-app"></a>
@@ -7,11 +8,10 @@
 <a target="_blank" href="https://github.com/HotaruRL/deli-ordering-app/pulls" style="display: inline-block;"><img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/HotaruRL/deli-ordering-app"></a>
 
 
-Welcome to NioBites, our command-line interface (CLI) application for a custom sandwich shop! This project simulates a point-of-sale system where users can build custom sandwiches, add drinks and chips to their order, and generate a receipt. It's built entirely in Java and showcases various Object-Oriented Programming (OOP) principles.
+NioBites - command-line interface (CLI) application for a custom sandwich shop! This project simulates a point-of-sale system where users can build custom sandwiches, add drinks, and chips to their order, and generate a receipt. It's built entirely in Java and showcases various Object-Oriented Programming (OOP) principles.
 
-## 🌟 Table of Contents
+# 🌟 Table of Contents
 
-*   [Short Description](#short-description)
 *   [🚀 Core Features](#core-features)
 *   [✨ User-Friendly Features](#user-friendly-features)
 *   [📸 Screenshots](#screenshots)
@@ -19,17 +19,14 @@ Welcome to NioBites, our command-line interface (CLI) application for a custom s
 *   [🛣️ Future Enhancements](#future-enhancements)
 
 
-## Short Description
-NioBites is a Java-based CLI application designed to manage orders for a sandwich shop. It allows users to fully customize sandwiches, select from pre-defined signature sandwiches, add side items, and complete their order by generating a text-based receipt. The application emphasizes OOP design, file I/O for data persistence (prices, receipts), and a structured, interactive user experience within the console.
-
-## 🚀 Core Features
+# 🚀 Core Features
 Our NioBites application incorporates the following core functionalities:
 
-*   **Order Management:**
-    *   Create new orders.
-    *   Add multiple items (sandwiches, drinks, chips) to an order.
-    *   Cancel an in-progress order.
-*   **Sandwich Customization:**
+- [x] ### Order Management
+  - Create new orders
+  - Add multiple items (sandwiches, drinks, chips) to an order
+  - Cancel an in-progress order.
+- [x] ### Sandwich Customization
     *   Select sandwich size (4", 8", 12").
     *   Choose bread type (White, Wheat, Rye, Wrap).
     *   Add a wide variety of toppings, categorized into:
@@ -39,22 +36,22 @@ Our NioBites application incorporates the following core functionalities:
         *   Sauces
     *   Option to add extra portions of toppings (with associated costs for premium toppings).
     *   Option to have the sandwich toasted.
-*   **Signature Sandwiches:**
+- [x] ### Signature Sandwiches
     *   Select from pre-defined signature sandwiches (e.g., Philly Cheesesteak, BLT).
     *   Option to take a signature sandwich as a base and further customize it.
-*   **Drinks & Chips:**
+- [x] ### Drinks & Chips
     *   Add various drinks with size options.
     *   Add different types of chips.
-*   **Pricing Engine:**
+- [x] ### Pricing Engine
     *   Dynamic price calculation based on sandwich size, bread, and premium/extra toppings.
     *   Prices for drinks and chips loaded from external configuration files.
-*   **Receipt Generation:**
+- [x] ### Receipt Generation
     *   Detailed, formatted text receipts generated upon checkout.
     *   Receipts saved to a `receipts/` directory with a timestamped filename (e.g., `yyyyMMdd-HHmmss.txt`).
-*   **Data Persistence:**
+- [x] ### Data Persistence
     *   Sandwich, topping, drink, and chip prices are loaded from `.csv` or `.txt` files (e.g., `prices/sandwich_prices.csv`).
     *   Signature sandwich definitions loaded from a file.
-*   **Store Hours & Future Orders:**
+- [x] ### Store Hours & Future Orders
     *   Checks if the store is currently open based on pre-defined hours.
     *   Allows users to schedule an order for a future date/time if the store is closed.
 
