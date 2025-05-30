@@ -138,6 +138,10 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 
 # 💡 Interesting Code
 ### 1.  **Create a dynamic menu from an ArrayList**
+<html>
+<details>
+<summary>Code</summary>
+
 ```java
 // create a menu with options autopopulated and numbered from an ArrayList (the last item is numbered with [0])
     public void setMenu(String menuName, ArrayList<String> options, String bordersChars, String paddingChars, int paddingLength) {
@@ -156,8 +160,40 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
         System.out.println(output);
     }
 ```
-### 2.  **Dynamic Enum Display Names with ANSI Colors:**
+
+</details>
+</html>
+
+### 2.  **Convert to a SelectedTopping type:**
+
+<html>
+<details>
+<summary>Code</summary>
+
+```java
+
+// convert String to SelectedTopping object
+public SelectedTopping convertToSelectedTopping(String toppingType, String toppingName) {
+Topping toppingObject = null; // create an empty Topping object to modify
+// convert empty Topping Object to the appropriate toppingType based on the string name toppingType provided
+// add provided toppingName to its name
+switch (toppingType) {
+case "Meat" -> toppingObject = new Meat(toppingName);
+case "Cheese" -> toppingObject = new Cheese(toppingName);
+case "Other Toppings" -> toppingObject = new OtherToppings(toppingName);
+case "Sauce" -> toppingObject = new Sauce(toppingName);
+case "Sides" -> toppingObject = new Sides(toppingName);
+}
+// convert current topping object into SelectedTopping object (non-extra)
+return new SelectedTopping(toppingObject, false);
+}
+```
+
+</details>
+</html>
+
 ### 3.  **Reverse Lookup for Topping Type:**
+
 <html>
 <details>
 <summary>Code</summary>
@@ -201,7 +237,60 @@ public SelectedTopping findToppingType(String nameToLookUp, HashMap<String, Arra
 </details>
 </html>
 
-### 4.  
+### 4.  **Parse a CSV file into HashMap of HashMaps (like XLOOKUP in Excel)**
+
+<html>
+<details>
+<summary>Code</summary>
+
+```java
+    // parse csv file with lines of multiple columns each e.g. size|basePrice|meat|extraMeat|cheese|extraCheese
+    // delimiter: pipe (|)
+    // HashMap 0: each column number is key, name of each column header is value
+    // HashMap of n line (header line not included): each column header is a key, each column value is a value
+    // HashMap output: each line's value of first column (header line not included) is a key, a hashmap of that line created above is a value
+    public HashMap<String, HashMap<String, String>> parseMultipleColumns(String filePath) {
+        HashMap<String, String> headerField = new HashMap<>();
+        HashMap<Integer, HashMap<String, String>> priceChartMap = new HashMap<>();
+        HashMap<String, HashMap<String, String>> output = new HashMap<>();
+        try {
+            bufferedReader = new BufferedReader(new FileReader(filePath));
+            //parse header line
+            int currentHeaderPart = 0;
+            String partName;
+            String partContent;
+            String[] headerParts = bufferedReader.readLine().trim().split("\\|");
+            for (String s : headerParts){
+                partName = "part" + currentHeaderPart;
+                partContent = s;
+                headerField.put(partName, partContent);
+                currentHeaderPart++;
+            }
+            // parse pricing lines
+
+            int priceChartID = 0;
+            String input;
+            while ((input = bufferedReader.readLine()) != null) {
+                String[] valueParts = input.trim().split("\\|");
+                HashMap<String, String> currentPriceChart = new HashMap<>();
+                int partNumber = 0;
+                for (String s : valueParts) {
+                    currentPriceChart.put(headerField.get("part" + partNumber), valueParts[partNumber]);
+                    partNumber++;
+                }
+                priceChartMap.put(priceChartID, currentPriceChart);
+                output.put(valueParts[0], priceChartMap.get(priceChartID));
+                priceChartID++;
+            }
+        } catch (Exception e) {
+            System.out.println("File cannot be read. Please double check FilePath!\nError: " + e.toString());
+        }
+        return output;
+    }
+```
+
+</details>
+</html>
 
 
 
