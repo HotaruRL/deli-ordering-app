@@ -66,10 +66,10 @@ public class FileUtils {
     // HashMap 0: each column number is key, name of each column header is value
     // HashMap of n line (header line not included): each column header is a key, each column value is a value
     // HashMap output: each line's value of first column (header line not included) is a key, a hashmap of that line created above is a value
-    public HashMap<String, HashMap<String, Double>> parseMultipleColumns(String filePath) {
+    public HashMap<String, HashMap<String, String>> parseMultipleColumns(String filePath) {
         HashMap<String, String> headerField = new HashMap<>();
-        HashMap<Integer, HashMap<String, Double>> priceChartMap = new HashMap<>();
-        HashMap<String, HashMap<String, Double>> output = new HashMap<>();
+        HashMap<Integer, HashMap<String, String>> priceChartMap = new HashMap<>();
+        HashMap<String, HashMap<String, String>> output = new HashMap<>();
         try {
             bufferedReader = new BufferedReader(new FileReader(filePath));
             //parse header line
@@ -89,10 +89,10 @@ public class FileUtils {
             String input;
             while ((input = bufferedReader.readLine()) != null) {
                 String[] valueParts = input.trim().split("\\|");
-                HashMap<String, Double> currentPriceChart = new HashMap<>();
+                HashMap<String, String> currentPriceChart = new HashMap<>();
                 int partNumber = 0;
                 for (String s : valueParts) {
-                    currentPriceChart.put(headerField.get("part" + partNumber), Double.parseDouble(valueParts[partNumber]));
+                    currentPriceChart.put(headerField.get("part" + partNumber), valueParts[partNumber]);
                     partNumber++;
                 }
                 priceChartMap.put(priceChartID, currentPriceChart);
@@ -103,6 +103,16 @@ public class FileUtils {
             System.out.println("File cannot be read. Please double check FilePath!\nError: " + e.toString());
         }
         return output;
+    }
+
+    // create an ArrayList of just keys from the hashmap of keys and their list of options
+    public ArrayList<String> getJustKeys(HashMap<String, HashMap<String, String>> chart){
+        ArrayList<String> justKeysList = new ArrayList<>();
+        for (HashMap.Entry<String, HashMap<String, String>> entry : chart.entrySet()) {
+            String type = entry.getKey();
+            justKeysList.add(type);
+        }
+        return justKeysList;
     }
 
     // create a filename string from a LocalDateTime value

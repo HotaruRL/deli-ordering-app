@@ -8,6 +8,7 @@ import utils.PricingService;
 import java.util.ArrayList;
 
 public class Sandwich implements LineItem {
+    private String sandwichName;
     private String sandwichSize;
     private BreadType breadType;
     private ArrayList<SelectedTopping> selectedToppings;
@@ -19,6 +20,10 @@ public class Sandwich implements LineItem {
     public Sandwich(int quantity){
         this.quantity = quantity;
     }
+    public Sandwich(String sandwichName, int quantity){
+        this.sandwichName = sandwichName;
+        this.quantity = quantity;
+    }
     public Sandwich(String sandwichSize, BreadType breadType, ArrayList<SelectedTopping> selectedToppings, boolean isToasted){
         this.sandwichSize = sandwichSize;
         this.breadType = breadType;
@@ -27,6 +32,7 @@ public class Sandwich implements LineItem {
     }
 
     // getters
+    public String getSandwichName() {return sandwichName;}
     public String getSandwichSize() {return sandwichSize;}
     public BreadType getBreadType() {return breadType;}
     public ArrayList<SelectedTopping> getSelectedToppings() {return selectedToppings;}
@@ -35,10 +41,12 @@ public class Sandwich implements LineItem {
     public String getIsCustomizing() {return isCustomizing;}
 
     // setters
+
+    public void setSandwichName(String sandwichName) {this.sandwichName = sandwichName;}
     public void setSandwichSize(String sandwichSize) {this.sandwichSize = sandwichSize;}
     public void setBreadType(BreadType breadType) {this.breadType = breadType;}
     public void setSelectedToppings(ArrayList<SelectedTopping> selectedToppings) {this.selectedToppings = selectedToppings;}
-    public void setToasted(boolean toasted) {isToasted = toasted;}
+    public void setToasted(boolean isToasted) {this.isToasted = isToasted;}
     public void setQuantity(int quantity) {this.quantity = quantity;}
     public void setIsCustomizing(String isCustomizing) {this.isCustomizing = isCustomizing;}
 
@@ -75,7 +83,7 @@ public class Sandwich implements LineItem {
 
     @Override
     public String getReceiptDetails() {
-        return String.format("Custom Sandwich (%s\")", this.sandwichSize);
+        return String.format("%s (%s\")", this.sandwichName, this.sandwichSize);
     }
 
     public ArrayList<String> getAdditionDetails(boolean forReceipt){

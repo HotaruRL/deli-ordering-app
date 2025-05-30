@@ -57,7 +57,8 @@ public class ChipsScreen extends Screen{
                 userInput = 0;
             }
         }
-        menuUtils.confirmAdd(currentChip);
+        menuUtils.showDetails(currentChip);
+        System.out.println(String.format(GREEN+"\nThe item above has been successfully added to your order!\n"+RESET));
     }
 
     public void chooseChipQuantity(){

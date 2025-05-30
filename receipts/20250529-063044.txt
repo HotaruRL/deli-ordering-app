@@ -1,0 +1,54 @@
+************************************************************
+                          NioBites                          
+      666 Warren Avenue,Bellevue,WA,98004,United States     
+                      (425) 520 - 1314                      
+************************************************************
+
+Order Date: 2025-05-29
+Order Time: 18:30:44
+Order ID: 1
+------------------------------------------------------------
+ITEMS
+------------------------------------------------------------
+1. Mega Meat Monster (12")                            
+   $31.00/ea  x1                                      $31.00
+   Bread: Rye
+   Toasted: Yes
+   Toppings:
+   - steak
+   - ham
+   - salami
+   - roast beef
+   - chicken
+   - bacon
+   - cheese: provolone
+   - cheese: cheddar
+   - onions
+   - mustard
+   - au jus
+
+2. Spicy Italian Supreme (12")                        
+   $16.75/ea  x1                                      $16.75
+   Bread: Rye
+   Toasted: No
+   Toppings:
+   - salami
+   - ham
+   - cheese: provolone
+   - peppers
+   - onions
+   - jalapenos
+   - lettuce
+   - tomatoes
+   - vinaigrette
+   - sauce
+
+------------------------------------------------------------
+Subtotal: 47.75
+Taxes: 10.0%
+------------------------------------------------------------
+TOTAL: 52.53
+------------------------------------------------------------
+
+                  Thank you for your order!                 
+************************************************************

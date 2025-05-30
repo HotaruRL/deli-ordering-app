@@ -23,6 +23,11 @@ public class CustomSandwichScreen extends Screen{
 
     @Override
     public void display() {
+        // set sandwich name to custom sandwich if created from scratch
+        if (currentSandwich.getSandwichName() == null){
+            currentSandwich.setSandwichName("Custom Sandwich");
+        }
+
         ArrayList<String> breadType = new ArrayList<>();
         breadType.add(BreadType.WHITE.getDisplayName());
         breadType.add(BreadType.WHEAT.getDisplayName());
