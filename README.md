@@ -137,8 +137,9 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 </html>
 
 # 💡 Interesting Code
-1.  **Dynamic Enum Display Names with ANSI Colors:**
-2.  **Flexible String to Boolean Conversion for User Input:**
-3.  **Reverse Lookup for Topping Type:**
+### 1.  **Dynamic Enum Display Names with ANSI Colors:**
+### 2.  **Flexible String to Boolean Conversion for User Input:**
+### 3.  **Reverse Lookup for Topping Type:**
+### 4.  **Create a dynamic menu from an ArrayList**
 
 

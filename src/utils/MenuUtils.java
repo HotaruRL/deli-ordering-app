@@ -191,7 +191,7 @@ public class MenuUtils {
     }
 
     // user the getString to prompt the user to enter a value
-    // parse the string input into an Double + reprompt if user input cannot be parsed
+    // parse the string input into a Double + reprompt if user input cannot be parsed
     public Double getDouble(String fieldName) {
         Double userInput = null;
         while (userInput == null) {
@@ -224,7 +224,7 @@ public class MenuUtils {
             spaceNeeded = 1;
         }
 
-        confirmation.append(String.format("%s%s\n",
+        confirmation.append(String.format("\n%s%s\n",
                 itemDescription,
                 SPACE.repeat(spaceNeeded)));
 
