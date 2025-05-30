@@ -84,55 +84,55 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 <h3>Home Screen</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="01.homeScreen" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="01.homeScreen" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/01.homeScreen.png"></p>
 </details>
 
 <h3>Order Screen</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="02.orderScreen" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="02.orderScreen" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/02.orderScreen.png"></p>
 </details>
 
 <h3>Sandwich Screen</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="03.sandwichScreen" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="03.sandwichScreen" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/03.sandwichScreen.png"></p>
 </details>
 
 <h3>Custom Sandwich Screen - Choose Bread Type</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="04.customSandwichScreen-breadType" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="04.customSandwichScreen-breadType" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/04.customSandwichScreen-breadType.png"></p>
 </details>
 
 <h3>Custom Sandwich Screen - Choose Bread Size</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="05.customSandwichScreen-breadSize" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="05.customSandwichScreen-breadSize" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/05.customSandwichScreen-breadSize.png"></p>
 </details>
 
 <h3>Custom Sandwich Screen - Choose Toppings - Meat</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="06.customSandwichScreen-toppings-meat" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="06.customSandwichScreen-toppings-meat" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/06.customSandwichScreen-toppings-meat.png"></p>
 </details>
 
 <h3>Custom Sandwich Screen - Choose Toppings - Add Extra</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="07.customSandwichScreen-toppings-addExtra" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="07.customSandwichScreen-toppings-addExtra" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/07.customSandwichScreen-toppings-addExtra.png"></p>
 </details>
 
 <h3>Custom Sandwich Screen - Choose Toppings - Done</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="08.customSandwichScreen-done" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="08.customSandwichScreen-done" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/08.customSandwichScreen-done.png"></p>
 </details>
 
 <h3>Custom Checkout Screen - Receipt Review</h3>
 <details>
 <summary>Images</summary>
-<p><img alt="09.checkoutScreen-receiptReview" src="https://github.com/HotaruRL/capstone-1-accounting-ledger/blob/master/img/01.%20main%20menu.png"></p>
+<p><img alt="09.checkoutScreen-receiptReview" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/09.checkoutScreen-receiptReview.png"></p>
 </details>
 </html>
 
