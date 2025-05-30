@@ -1,5 +1,5 @@
 
-<img alt="Project banner" src="https://github.com/HotaruRL/workshop-4-carDealership/blob/master/Workshop%204%20-%20Car%20Dealership.jpg"></img>
+<img alt="Project banner" src="https://github.com/HotaruRL/deli-ordering-app/blob/20-clean-up-code/img/Capstone%202%20-%20NioBites%20Deli%20Ordering%20App.png"></img>
 
 ### NioBites: A Java CLI application for ordering customizable deli sandwiches and sides.
 
