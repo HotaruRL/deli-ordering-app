@@ -11,13 +11,11 @@
 NioBites - command-line interface (CLI) application for a custom sandwich shop! This project simulates a point-of-sale system where users can build custom sandwiches, add drinks, and chips to their order, and generate a receipt. It's built entirely in Java and showcases various Object-Oriented Programming (OOP) principles.
 
 # 🌟 Table of Contents
-*   [🚀 Core Features](#core-features)
-*   [✨ User-Friendly Features](#user-friendly-features)
-*   [🛣️ Future Enhancements](#future-enhancements)
-*   [📸 Screenshots](#screenshots)
-*   [💡 Interesting Code Snippets](#interesting-code-snippets)
-
-
+*   [🚀 Core Features](#-core-features)
+*   [✨ User-Friendly Features](#-user-friendly-features)
+*   [🛣️ Future Enhancements](#%EF%B8%8F-future-enhancements)
+*   [📸 Screenshots](#-screenshots)
+*   [💡 Interesting Code Snippets](#-interesting-code)
 
 # 🚀 Core Features
 - [x] 📒 **Order Management**
