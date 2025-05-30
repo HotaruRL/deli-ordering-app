@@ -158,6 +158,46 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 ```
 ### 2.  **Dynamic Enum Display Names with ANSI Colors:**
 ### 3.  **Reverse Lookup for Topping Type:**
+<html>
+<details>
+<summary>Code</summary>
+```java
+public SelectedTopping findToppingType(String nameToLookUp, HashMap<String, ArrayList<String>> toppingChart) {
+        Topping toppingObject = null;
+        if (nameToLookUp == null || toppingChart == null) {
+            return null;
+        }
+        String processedName = nameToLookUp.trim().toLowerCase();
+
+        // go through each entry of toppingChart
+        for (Map.Entry<String, ArrayList<String>> entry : toppingChart.entrySet()) {
+            // get the current Topping Type
+            String toppingType = entry.getKey();
+            // list of options of current Topping Type
+            ArrayList<String> options = entry.getValue();
+            // if options list is not empty
+            if (options != null) {
+                // compare to each option in that list
+                for (String option : options) {
+                    if (option.trim().toLowerCase().equals(processedName)) {
+                        switch (toppingType) {
+                            case "Meat" -> toppingObject = new Meat(option);
+                            case "Cheese" -> toppingObject = new Cheese(option);
+                            case "Other Toppings" -> toppingObject = new OtherToppings(option);
+                            case "Sauce" -> toppingObject = new Sauce(option);
+                            case "Sides" -> toppingObject = new Sides(option);
+                        }
+                        return new SelectedTopping(toppingObject, false);
+                    }
+                }
+            }
+        }
+        // options list is empty or none match
+        return null;
+    }
+```
+</details>
+</html>
 ### 4.  
 
 
