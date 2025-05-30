@@ -22,12 +22,7 @@ public class ToppingScreen extends Screen {
     @Override
     public void display() {
         // list of topping types as keys to get the list of options for such types + names for menu
-        ArrayList<String> toppingTypeList = new ArrayList<>();
-        toppingTypeList.add("Meat");
-        toppingTypeList.add("Cheese");
-        toppingTypeList.add("Other Toppings");
-        toppingTypeList.add("Sauce");
-        toppingTypeList.add("Sides");
+        ArrayList<String> toppingTypeList = optionsList.getToppingTypeList();
         // get Hashmap of topping types and their list of options
         HashMap<String, ArrayList<String>> toppingChart = menuUtils.getToppingChart();
 
@@ -58,45 +53,35 @@ public class ToppingScreen extends Screen {
                 // input is within range of options
                 } else if (userInput > 0 && userInput < list.size()) {
                     String selectedToppingName = list.get(userInput - 1); // index of selected option is less than 1 the number shown
-                    // TODO: extract method from the line below?
-                    Topping currentTopping = null; // create an empty Topping object to modify and to add later
-                    // convert empty Topping Object to the appropriate type based on the string name of current topping type in for loop
-                    // add selected topping option to its name
-                    switch (type) {
-                        case "Meat" -> currentTopping = new Meat(selectedToppingName);
-                        case "Cheese" -> currentTopping = new Cheese(selectedToppingName);
-                        case "Other Toppings" -> currentTopping = new OtherToppings(selectedToppingName);
-                        case "Sauce" -> currentTopping = new Sauce(selectedToppingName);
-                        case "Sides" -> currentTopping = new Sides(selectedToppingName);
-                    }
 
-                    // convert current topping object into SelectedTopping object (non-extra)
-                    SelectedTopping selectedTopping = new SelectedTopping(currentTopping, false);
-
+                    SelectedTopping selectedTopping = menuUtils.convertToSelectedTopping(type, selectedToppingName);
                     // check if the sandwich's list of SelectedToppings has been created or not
                     // if not create it and add the new selectedTopping above onto the list
                     if (currentSandwich.getSelectedToppings() == null) {
                         currentSandwich.setSelectedToppings(new ArrayList<>());
                         currentSandwich.addTopping(selectedTopping);
                         System.out.printf(GREEN + "%s has been successfully added!\n" + RESET, selectedTopping.getDisplayName());
-
-                        // check if topping already added
-                    } else if (currentTopping != null) {
+                    } else{
+                        // list of SelectedToppings has been created
+                        // empty object of the possibly existed SelectedTopping
                         SelectedTopping existingMatch = null;
+                        // go through each SelectedTopping that currentSandwich has
                         for (int i = 0; i < currentSandwich.getSelectedToppings().size(); i++) {
+                            // SelectedTopping currently picked on to compare
                             SelectedTopping st = currentSandwich.getSelectedToppings().get(i);
-
+                            // Compare + if found already existed set it to empty object created above + stop looking, comparing
                             if (st.getTopping().getToppingName().equalsIgnoreCase(selectedToppingName)) {
                                 existingMatch = st;
                                 break;
                             }
                         }
+                        // if found already existed
                         if (existingMatch != null) {
-                            // if already added, ask if guest wants to add extra
+                            // if it is not already EXTRA, ask if guest wants to add extra
                             if (!existingMatch.isExtra()) {
-                                ArrayList<String> addExtra = new ArrayList<>();
-                                addExtra.add(String.format(RED + "Add" + RESET + " Extra" + BLUE + " %s" + RESET, selectedToppingName));
-                                addExtra.add(RED + "Skip" + RESET);
+                                // get options for the prompt
+                                ArrayList<String> addExtra = optionsList.promptAddExtra(selectedToppingName);
+
                                 userInput = -1;
                                 while (userInput != -2) {
                                     menuUtils.setMenu("Add Extra Topping?", addExtra, " ", "-", 10);
@@ -121,13 +106,12 @@ public class ToppingScreen extends Screen {
                                 System.out.printf(BLUE + "'%s' is already added as extra.\n" + RESET, selectedToppingName);
                             }
                         } else {
+                            // It is NOT already existed. Add it
                             currentSandwich.addTopping(selectedTopping);
                             System.out.printf(GREEN + "%s has been successfully added!\n" + RESET, selectedTopping.getDisplayName());
                         }
-                    } else {
-                        System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
                     }
-                }else if (userInput >= list.size()) {
+                }else if (userInput >= list.size()) { // input is out of range
                     System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
                 }
             }

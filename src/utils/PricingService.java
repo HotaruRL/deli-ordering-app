@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class PricingService {
     private static final String SANDWICH_PRICES_FILE_PATH = "internalUse\\sandwichPrice.csv";
     private static final String DRINK_PRICES_FILE_PATH = "internalUse\\drinkPrice.csv";
-    private HashMap<String, HashMap<String, Double>> sandwichPriceChart;
+    private HashMap<String, HashMap<String, String>> sandwichPriceChart;
     private HashMap<String, String> drinkPriceChart;
     private final double CHIPS_PRICE = 1.5;
     private FileUtils fileUtils;
@@ -52,7 +52,7 @@ public class PricingService {
     public double getSpecificPrice(String sandwichSize, String priceFor){
         double specificPrice = 0;
         try {
-            specificPrice = sandwichPriceChart.get(sandwichSize).get(priceFor);
+            specificPrice = Double.parseDouble(sandwichPriceChart.get(sandwichSize).get(priceFor));
         } catch (Exception e) {
             System.out.println("Either this size or this specific price is not available!");
         }
