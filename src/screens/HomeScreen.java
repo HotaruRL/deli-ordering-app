@@ -4,6 +4,7 @@ import utils.OrderManager;
 
 import static utils.ColorUtils.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class HomeScreen extends Screen {
@@ -15,6 +16,7 @@ public class HomeScreen extends Screen {
 
     @Override
     public void display() {
+        LocalDateTime orderTime;
         ArrayList<String> list = optionsList.getHomeScreenList();
 
         int userInput = -1;
@@ -23,7 +25,8 @@ public class HomeScreen extends Screen {
             userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
                 case 1 -> {
-                    orderManager.createNewOrder();
+                    orderTime = orderManager.getOrderInBusinessHours();
+                    orderManager.createNewOrder(orderTime);
                     this.orderScreen = new OrderScreen(orderManager, orderManager.getCurrentOrder());
                     orderScreen.display();
                 }

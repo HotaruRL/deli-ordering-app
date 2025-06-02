@@ -17,6 +17,13 @@ public class OptionsList {
         return list;
     }
 
+    public ArrayList<String> getFutureOrderScreenList() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(RED + "YES," + RESET + " let's continue");
+        list.add(RED + "NO," + RESET + " let's exit");
+        return list;
+    }
+
     public ArrayList<String> getOrderScreenList() {
         ArrayList<String> list = new ArrayList<>();
         list.add(RED + "Add" + RESET + " Sandwich");

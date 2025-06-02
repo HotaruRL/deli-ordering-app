@@ -1,15 +1,17 @@
 package utils;
 
-import merch.Chips;
-import merch.Drink;
 import merch.LineItem;
 import merch.Sandwich;
+import screens.OrderScreen;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static utils.ColorUtils.*;
 
 public class OrderManager {
     private Order order;
@@ -18,14 +20,18 @@ public class OrderManager {
     private LocalTime closingTime = LocalTime.of(17, 00);
     private FileUtils fileUtils;
     private TextUtils textUtils;
+    private OptionsList optionsList;
+    private MenuUtils menuUtils;
     private static final String SHOP_INFO_FILE_PATH = "internalUse\\shopInfo.csv";
 
     public OrderManager() {
         this.fileUtils = new FileUtils();
         this.textUtils = new TextUtils();
+        this.optionsList = new OptionsList();
+        this.menuUtils = new MenuUtils();
     }
 
-    public boolean isStoreOpened(LocalTime orderTime) {
+    public boolean isWithinBusinessHours(LocalTime orderTime) {
         boolean isOpen = false;
         if (orderTime.isAfter(openingTime) && orderTime.isBefore(closingTime)) {
             isOpen = true;
@@ -33,7 +39,55 @@ public class OrderManager {
         return isOpen;
     }
 
-    public void createNewOrder() {
+    // assuming the store opens everyday
+    public LocalDateTime orderForLater(){
+        LocalTime currentTime = LocalTime.now();
+        LocalTime orderTime;
+        LocalDate today = LocalDate.now();
+        LocalDate orderDate;
+
+        if (currentTime.isAfter(closingTime)){
+            orderDate = today;
+        } else {
+            orderDate = today.plusDays(1);
+        }
+
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        String userInput = menuUtils.getString("time for your order");
+
+        while (true) {
+            try {
+                orderTime = LocalTime.parse(userInput, timeFormatter);
+                break;
+            } catch (Exception e) {
+                System.out.printf(RED + "\nInvalid time format. Please try again using HH:mm format (e.g. 09:00 or 14:30\n" + RESET);
+            }
+        }
+        return LocalDateTime.of(orderDate, orderTime);
+    }
+
+    public LocalDateTime getOrderInBusinessHours() {
+        LocalTime now = LocalTime.now();
+        LocalDateTime orderTime = LocalDateTime.now();
+        ArrayList<String> list = optionsList.getFutureOrderScreenList();
+
+        if (!isWithinBusinessHours(now)) {
+            int userInput = -1;
+            while (userInput != 0) {
+                System.out.println(String.format(RED + "Our store is NOT open yet. Would you like to place order for a future time?\n"));
+                menuUtils.setMenu("Order for Later?", list, " ", "-", 10);
+                userInput = menuUtils.getInt("appropriate number to execute the task");
+                switch (userInput) {
+                    case 1 -> orderTime = orderForLater();
+                    case 0 -> System.out.println("Cancel Order\n");
+                    default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
+                }
+            }
+        }
+        return orderTime;
+    }
+
+    public void createNewOrder(LocalDateTime orderTime) {
         int orderID = this.orders.size() + 1;
         this.order = new Order(orderID, LocalDateTime.now(), new ArrayList<LineItem>());
         this.orders.add(this.order);
@@ -140,7 +194,7 @@ public class OrderManager {
         fileUtils.writeToFile(order.getOrderDateTime(), createReceipt(order));
     }
 
-    public String getReceiptName(Order order){
+    public String getReceiptName(Order order) {
         return fileUtils.getFileName(order.getOrderDateTime());
     }
 }
