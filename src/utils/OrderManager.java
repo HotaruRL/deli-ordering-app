@@ -2,7 +2,6 @@ package utils;
 
 import merch.LineItem;
 import merch.Sandwich;
-import screens.OrderScreen;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +17,8 @@ public class OrderManager {
     private ArrayList<Order> orders = new ArrayList<>();
     private LocalTime openingTime = LocalTime.of(6, 59);
     private LocalTime closingTime = LocalTime.of(17, 00);
+    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private FileUtils fileUtils;
     private TextUtils textUtils;
     private OptionsList optionsList;
@@ -31,12 +32,11 @@ public class OrderManager {
         this.menuUtils = new MenuUtils();
     }
 
-    public boolean isWithinBusinessHours(LocalTime orderTime) {
-        boolean isOpen = false;
+    public boolean isOrderTimeValid(LocalTime orderTime) {
         if (orderTime.isAfter(openingTime) && orderTime.isBefore(closingTime)) {
-            isOpen = true;
+            return true;
         }
-        return isOpen;
+        return false;
     }
 
     // assuming the store opens everyday
@@ -52,13 +52,17 @@ public class OrderManager {
             orderDate = today.plusDays(1);
         }
 
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        String userInput = menuUtils.getString("time for your order");
-
         while (true) {
             try {
+                String userInput = menuUtils.getString("time for your order");
                 orderTime = LocalTime.parse(userInput, timeFormatter);
-                break;
+                if (isOrderTimeValid(orderTime)) {
+                    break;
+                }else {
+                    System.out.printf(RED+"\nOrder time must be within our business hours of %s - %s\n"+RESET,
+                            openingTime.plusMinutes(1).format(timeFormatter),
+                            closingTime.format(timeFormatter));
+                }
             } catch (Exception e) {
                 System.out.printf(RED + "\nInvalid time format. Please try again using HH:mm format (e.g. 09:00 or 14:30\n" + RESET);
             }
@@ -67,24 +71,31 @@ public class OrderManager {
     }
 
     public LocalDateTime getOrderInBusinessHours() {
-        LocalTime now = LocalTime.now();
-        LocalDateTime orderTime = LocalDateTime.now();
+        LocalTime now = LocalTime.of(17,01);
+        LocalDateTime orderDateTime = LocalDateTime.now();
         ArrayList<String> list = optionsList.getFutureOrderScreenList();
 
-        if (!isWithinBusinessHours(now)) {
+        if (!isOrderTimeValid(now)) {
             int userInput = -1;
             while (userInput != 0) {
-                System.out.println(String.format(RED + "Our store is NOT open yet. Would you like to place order for a future time?\n"));
+                System.out.println(String.format(RED + "Our store is NOT open yet. Would you like to place order for a future time?\n"+RESET));
                 menuUtils.setMenu("Order for Later?", list, " ", "-", 10);
                 userInput = menuUtils.getInt("appropriate number to execute the task");
                 switch (userInput) {
-                    case 1 -> orderTime = orderForLater();
-                    case 0 -> System.out.println("Cancel Order\n");
+                    case 1 -> {
+                        orderDateTime = orderForLater();
+                        System.out.printf(YELLOW + "\nYour order is set for %s\n" + RESET, orderDateTime.format(dateTimeFormatter));
+                        userInput = 0;
+                    }
+                    case 0 -> {
+                        System.out.println(RED+"Order Cancelled\n"+MAGENTA+"See you again!"+RESET);
+                        orderDateTime = LocalDateTime.of(LocalDate.now(), now);
+                    }
                     default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
                 }
             }
         }
-        return orderTime;
+        return orderDateTime;
     }
 
     public void createNewOrder(LocalDateTime orderTime) {
