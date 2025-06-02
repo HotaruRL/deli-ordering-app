@@ -31,6 +31,8 @@ public class CheckoutScreen extends Screen {
                 case 1 -> {
                     System.out.println(YELLOW + "You are a lucky customer!\n" + GREEN + "This order is on the house!\n" + RESET + "Enjoy your meal!\n");
                     orderManager.saveReceipt(currentOrder);
+                    String receiptName = orderManager.getReceiptName(currentOrder);
+                    System.out.printf(MAGENTA+"The receipt has been successfully saved to IdeaProjects\\deli-ordering-app\\receipts as %s\n"+RESET, receiptName);
                     userInput = 0;
                 }
                 case 0 -> {
