@@ -28,12 +28,7 @@ public class CustomSandwichScreen extends Screen{
             currentSandwich.setSandwichName("Custom Sandwich");
         }
 
-        ArrayList<String> breadType = new ArrayList<>();
-        breadType.add(BreadType.WHITE.getDisplayName());
-        breadType.add(BreadType.WHEAT.getDisplayName());
-        breadType.add(BreadType.RYE.getDisplayName());
-        breadType.add(BreadType.WRAP.getDisplayName());
-        breadType.add(RED + "Go" + RESET + " back");
+        ArrayList<String> breadType = optionsList.getBreadScreenList();
 
         int userInput = -1;
         while (userInput != 0) {
@@ -70,12 +65,8 @@ public class CustomSandwichScreen extends Screen{
     }
 
     public void getSandwichSize(){
+        ArrayList<String> sizeOptions = optionsList.getSizeScreenList();
 
-        ArrayList<String> sizeOptions = new ArrayList<>();
-        sizeOptions.add(RED + "4\"" + RESET + " Small");
-        sizeOptions.add(RED + "8\"" + RESET + " Medium");
-        sizeOptions.add(RED + "12\"" + RESET + " Large");
-        sizeOptions.add(RED + "Go" + RESET + " back");
         ToppingScreen toppingScreen = new ToppingScreen(orderManager, currentSandwich);
         int userInput = -1;
         while (userInput != 0) {

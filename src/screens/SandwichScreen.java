@@ -21,14 +21,11 @@ public class SandwichScreen extends Screen{
 
     @Override
     public void display() {
-        ArrayList<String> signatureOrCustom = new ArrayList<>();
-        signatureOrCustom.add(RED + "Custom" + RESET + " Sandwich");
-        signatureOrCustom.add(RED + "Signature" + RESET + " Sandwich");
-        signatureOrCustom.add(RED + "Go" + RESET + " back");
+        ArrayList<String> list = optionsList.getSandwichScreenList();
 
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("Sandwich Ordering Screen",signatureOrCustom,"*","-",3);
+            menuUtils.setMenu("Sandwich Ordering Screen",list,"*","-",3);
             userInput = menuUtils.getInt("your choice");
             switch (userInput) {
                 case 1 -> {

@@ -20,16 +20,11 @@ public class OrderScreen extends Screen {
 
     @Override
     public void display() {
-        ArrayList<String> options = new ArrayList<>();
-        options.add(RED + "Add" + RESET + " Sandwich");
-        options.add(RED + "Add" + RESET + " Drink");
-        options.add(RED + "Add" + RESET + " Chips");
-        options.add(RED + "Checkout" + RESET);
-        options.add(RED + "Cancel" + RESET + " Order");
+        ArrayList<String> list = optionsList.getOrderScreenList();
 
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("Order Screen", options, "*", "-", 3);
+            menuUtils.setMenu("Order Screen", list, "*", "-", 3);
             userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
                 case 1 -> {

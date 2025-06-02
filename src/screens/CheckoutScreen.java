@@ -18,16 +18,14 @@ public class CheckoutScreen extends Screen {
 
     @Override
     public void display() {
-        ArrayList<String> options = new ArrayList<>();
-        options.add(RED + "Continue" + RESET + " to Payment");
-        options.add(RED + "Go" + RESET + " back");
+        ArrayList<String> list = optionsList.getCheckoutScreenList();
 
         Order currentOrder = orderManager.getCurrentOrder();
         System.out.println(textUtils.headerWithPadding("Current Order", "*", "-", 3));
         orderManager.showCurrentOrder(orderManager.createReceipt(currentOrder));
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("Everything looks good?", options, " ", "-", 10);
+            menuUtils.setMenu("Everything looks good?", list, " ", "-", 10);
             userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
                 case 1 -> {

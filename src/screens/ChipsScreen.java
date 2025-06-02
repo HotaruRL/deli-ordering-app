@@ -63,16 +63,11 @@ public class ChipsScreen extends Screen {
 
     public void chooseChipQuantity() {
         int maxQuantity = 30;
-
-        ArrayList<String> drinkQuantity = new ArrayList<>();
-        drinkQuantity.add("Just" + RED + " 01" + RESET + " Bag");
-        drinkQuantity.add("Give me" + RED + " 02" + RESET + " Bags");
-        drinkQuantity.add(RED + "Enter" + RESET + " Custom Amount");
-        drinkQuantity.add(RED + "Go" + RESET + " back");
+        ArrayList<String> chipsQuantity = optionsList.getChipsQuantityScreenList();
 
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("2. Chips Quantity Options", drinkQuantity, " ", "-", 10);
+            menuUtils.setMenu("2. Chips Quantity Options", chipsQuantity, " ", "-", 10);
             userInput = menuUtils.getInt("your choice");
             switch (userInput) {
                 case 1 -> {

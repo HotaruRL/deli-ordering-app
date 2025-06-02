@@ -121,9 +121,7 @@ public class ToppingScreen extends Screen {
     }
 
     public void getSandwichToasted(){
-        ArrayList<String> toasted = new ArrayList<>();
-        toasted.add(RED + "Toast" + RESET + " It");
-        toasted.add(RED + "DON'T" + RESET + " Toast It");
+        ArrayList<String> toasted = optionsList.getToastedScreenList();
 
         int userInput = -1;
         while (userInput != -2) {

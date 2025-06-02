@@ -28,6 +28,55 @@ public class MenuUtils {
         this.scanner = new Scanner(System.in);
     }
 
+    // while loop for the screens
+    public void loopScreen(String screenType, String headerText, ArrayList<String> optionsList, String promptMessage){
+        while (true){
+            createHeader(screenType, headerText,optionsList);
+            int userInput = getInt(promptMessage);
+            handleSection(screenType, userInput);
+            if (userInput == 0){
+                break;
+            }
+        }
+
+    }
+
+    // generate header for menu
+    public void createHeader(String screenType, String headerText, ArrayList<String> optionsList){
+        if(screenType.contains("Screen")){
+            setMenu(headerText, optionsList, "*", "-", 3);
+        }else {
+            setMenu(headerText, optionsList, " ", "-", 10);
+        }
+    }
+
+    // create a menu with options autopopulated and numbered from an ArrayList (the last item is numbered with [0])
+    public void setMenu(String menuName, ArrayList<String> options, String bordersChars, String paddingChars, int paddingLength) {
+        int optionNumber = 1;
+        StringBuilder output = new StringBuilder();
+        String header = textUtils.headerWithPadding(menuName, bordersChars, paddingChars, paddingLength);
+        output.append(header).append("\n");
+        for (String s : options) {
+            if (!s.equals(options.getLast())) {
+                output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", optionNumber, s)).append("\n");
+                optionNumber++;
+            } else {
+                output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", 0, s)).append("\n");
+            }
+        }
+        System.out.println(output);
+    }
+
+    public int handleSection(String screenType, int userInput){
+        int output = -1;
+        switch (screenType){
+            case "Home Screen" -> output = 0;
+            case "" -> output = 0;
+            default -> output = 0;
+        }
+        return output;
+    }
+
     // get the index of newly added item for the purpose of getting correct item to modify
     public int getIndexOfLastItem(ArrayList<LineItem> list) {
         return list.size() - 1;
@@ -146,23 +195,6 @@ public class MenuUtils {
             SelectedTopping toppingToAdd = findToppingType(topping, getToppingChart());
             currentsandwich.addTopping(toppingToAdd);
         }
-    }
-
-    // create a menu with options autopopulated and numbered from an ArrayList (the last item is numbered with [0])
-    public void setMenu(String menuName, ArrayList<String> options, String bordersChars, String paddingChars, int paddingLength) {
-        int optionNumber = 1;
-        StringBuilder output = new StringBuilder();
-        String header = textUtils.headerWithPadding(menuName, bordersChars, paddingChars, paddingLength);
-        output.append(header).append("\n");
-        for (String s : options) {
-            if (!s.equals(options.getLast())) {
-                output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", optionNumber, s)).append("\n");
-                optionNumber++;
-            } else {
-                output.append(String.format("%-10s[" + BLUE + "%d" + RESET + "] %s", "", 0, s)).append("\n");
-            }
-        }
-        System.out.println(output);
     }
 
     // prompt the user to enter a value for the provided fieldName and check if the input is empty or not
