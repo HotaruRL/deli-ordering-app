@@ -26,11 +26,15 @@ public class HomeScreen extends Screen {
             switch (userInput) {
                 case 1 -> {
                     orderTime = orderManager.getOrderInBusinessHours();
+                    if (!orderManager.isOrderTimeValid(orderTime.toLocalTime())){
+                        return;
+                    }
                     orderManager.createNewOrder(orderTime);
                     this.orderScreen = new OrderScreen(orderManager, orderManager.getCurrentOrder());
                     orderScreen.display();
                 }
                 case 0 -> {
+                    System.out.println(MAGENTA+" See you again!"+RESET);
                     return;
                 }
                 default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
