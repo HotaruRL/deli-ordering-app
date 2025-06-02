@@ -15,13 +15,11 @@ public class HomeScreen extends Screen {
 
     @Override
     public void display() {
-        ArrayList<String> options = new ArrayList<>();
-        options.add(RED + "New" + RESET + " Order");
-        options.add(RED + "Exit" + RESET);
+        ArrayList<String> list = optionsList.getHomeScreenList();
 
         int userInput = -1;
         while (userInput != 0) {
-            menuUtils.setMenu("Home Screen", options, "*", "-", 3);
+            menuUtils.setMenu("Home Screen", list, "*", "-", 3);
             userInput = menuUtils.getInt("appropriate number to execute the task");
             switch (userInput) {
                 case 1 -> {

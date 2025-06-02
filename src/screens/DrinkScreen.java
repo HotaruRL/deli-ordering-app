@@ -63,11 +63,9 @@ public class DrinkScreen extends Screen{
     }
 
     public void chooseDrinkSize(){
-        ArrayList<String> drinkSize = new ArrayList<>();
-        drinkSize.add("Size " + RED + "Small" + RESET);
-        drinkSize.add("Size " + RED + "Medium" + RESET);
-        drinkSize.add("Size " + RED + "Large" + RESET);
-        drinkSize.add(RED + "Go" + RESET + " back");
+        ArrayList<String> drinkSize = optionsList.getDrinkSizeScreenList();
+
+
         int userInput = -1;
         while (userInput != 0) {
             menuUtils.setMenu("2. Drink Size Options",drinkSize," ","-",10);
@@ -97,12 +95,7 @@ public class DrinkScreen extends Screen{
 
     public void chooseDrinkQuantity(){
         int maxQuantity = 30;
-
-        ArrayList<String> drinkQuantity = new ArrayList<>();
-        drinkQuantity.add("Just" + RED + " 01" + RESET);
-        drinkQuantity.add("Give me a" + RED + " 6-pack" + RESET);
-        drinkQuantity.add(RED + "Enter" + RESET + " Custom Amount");
-        drinkQuantity.add(RED + "Go" + RESET + " back");
+        ArrayList<String> drinkQuantity = optionsList.getDrinkQuantityScreenList();
 
         int userInput = -1;
         while (userInput != 0) {
