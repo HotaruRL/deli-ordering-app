@@ -71,7 +71,8 @@ public class OrderManager {
     }
 
     public LocalDateTime getOrderInBusinessHours() {
-        LocalTime now = LocalTime.of(17,01);
+//        LocalTime now = LocalTime.of(17,01); // for testing
+        LocalTime now = LocalTime.now();
         LocalDateTime orderDateTime = LocalDateTime.now();
         ArrayList<String> list = optionsList.getFutureOrderScreenList();
 
@@ -89,7 +90,7 @@ public class OrderManager {
                     }
                     case 0 -> {
                         System.out.println(RED+"Order Cancelled\n"+MAGENTA+"See you again!"+RESET);
-                        orderDateTime = LocalDateTime.of(LocalDate.now(), now);
+//                        orderDateTime = LocalDateTime.of(LocalDate.now(), now); // for testing different time
                     }
                     default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
                 }
