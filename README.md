@@ -48,6 +48,9 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 - [x] 🗃️ **Data Persistence**
   - Sandwich, topping, drink, and chip prices are loaded from `.csv` or `.txt` files (e.g., `sandwichPrice.csv`)
   - Signature sandwich definitions loaded from a file
+- [x] ⌚ **Store Hours & Future Orders**
+  - Checking if the store is currently open based on pre-defined hours
+  - Allowing users to schedule an order for a future date/time if the store is closed
 
 # ✨ User-Friendly Features
 *   **Clear, Interactive Prompts:** Each step of the order process presents clear questions and numbered options.
@@ -63,9 +66,6 @@ NioBites - command-line interface (CLI) application for a custom sandwich shop! 
 # 🛣️ Future Enhancements
 - [ ] 💵 **Payment System**
   - Processing payments
-- [ ] ⌚ **Store Hours & Future Orders**
-  - Checking if the store is currently open based on pre-defined hours
-  - Allowing users to schedule an order for a future date/time if the store is closed
 - [ ] 🖱️ **GUI Implementation**
   - Porting the application to a graphical user interface (e.g., using JavaFX)
 - [ ] 🗄️ **More Robust Data Storage**
