@@ -40,13 +40,13 @@ public class OrderManager {
     }
 
     // assuming the store opens everyday
-    public LocalDateTime orderForLater(){
+    public LocalDateTime orderForLater() {
         LocalTime currentTime = LocalTime.now();
         LocalTime orderTime;
         LocalDate today = LocalDate.now();
         LocalDate orderDate;
 
-        if (currentTime.isAfter(closingTime)){
+        if (currentTime.isAfter(closingTime)) {
             orderDate = today;
         } else {
             orderDate = today.plusDays(1);
@@ -58,8 +58,8 @@ public class OrderManager {
                 orderTime = LocalTime.parse(userInput, timeFormatter);
                 if (isOrderTimeValid(orderTime)) {
                     break;
-                }else {
-                    System.out.printf(RED+"\nOrder time must be within our business hours of %s - %s\n"+RESET,
+                } else {
+                    System.out.printf(RED + "\nOrder time must be within our business hours of %s - %s\n" + RESET,
                             openingTime.plusMinutes(1).format(timeFormatter),
                             closingTime.format(timeFormatter));
                 }
@@ -79,7 +79,7 @@ public class OrderManager {
         if (!isOrderTimeValid(now)) {
             int userInput = -1;
             while (userInput != 0) {
-                System.out.println(String.format(RED + "Our store is NOT open yet. Would you like to place order for a future time?\n"+RESET));
+                System.out.println(String.format(RED + "Our store is NOT open yet. Would you like to place order for a future time?\n" + RESET));
                 menuUtils.setMenu("Order for Later?", list, " ", "-", 10);
                 userInput = menuUtils.getInt("appropriate number to execute the task");
                 switch (userInput) {
@@ -89,7 +89,7 @@ public class OrderManager {
                         userInput = 0;
                     }
                     case 0 -> {
-                        System.out.println(RED+"Order Cancelled\n"+MAGENTA+"See you again!"+RESET);
+                        System.out.println(RED + "Order Cancelled\n" + MAGENTA + "See you again!" + RESET);
 //                        orderDateTime = LocalDateTime.of(LocalDate.now(), now); // for testing different time
                     }
                     default -> System.out.println(RED + "Command not found. Please try again!" + RESET + "\n");
