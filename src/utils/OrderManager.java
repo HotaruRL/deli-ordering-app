@@ -139,4 +139,8 @@ public class OrderManager {
     public void saveReceipt(Order order) {
         fileUtils.writeToFile(order.getOrderDateTime(), createReceipt(order));
     }
+
+    public String getReceiptName(Order order){
+        return fileUtils.getFileName(order.getOrderDateTime());
+    }
 }
