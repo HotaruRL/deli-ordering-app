@@ -1,0 +1,46 @@
+************************************************************
+                          NioBites                          
+      666 Warren Avenue,Bellevue,WA,98004,United States     
+                      (425) 520 - 1314                      
+************************************************************
+
+Order Date: 2025-05-30
+Order Time: 10:48:43
+Order ID: 2
+------------------------------------------------------------
+ITEMS
+------------------------------------------------------------
+1. Custom Sandwich (12")                              
+   $15.25/ea  x1                                      $15.25
+   Bread: Wrap
+   Toasted: Yes
+   Toppings:
+   - chicken (Extra)
+   - chicken
+   - cheese: provolone
+   - tomatoes
+   - jalapenos
+   - ranch
+
+2. Chicken Bacon Ranch Wrap (12")                     
+   $18.25/ea  x1                                      $18.25
+   Bread: White
+   Toasted: Yes
+   Toppings:
+   - chicken (Extra)
+   - bacon
+   - cheese: cheddar
+   - lettuce
+   - tomatoes
+   - ranch
+   - chicken
+
+------------------------------------------------------------
+Subtotal: 33.50
+Taxes: 10.0%
+------------------------------------------------------------
+TOTAL: 36.85
+------------------------------------------------------------
+
+                  Thank you for your order!                 
+************************************************************
